@@ -1,11 +1,10 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 
 // TODO: Fix favicon
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>
           Kobra | A visual programming language for machine learning
@@ -14,11 +13,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Kobra!</h1>
+      <main>
+        <h1>Welcome to Kobra!</h1>
       </main>
 
-      <footer className={styles.footer}>
+      <footer>
         <a
           href="https://github.com/kobra-dev/kobra.dev"
           target="_blank"
