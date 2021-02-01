@@ -1,9 +1,63 @@
-import styles from "../styles/Home.module.css";
+import {
+  Box,
+  Button,
+  Image,
+  SimpleGrid,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { IoLogIn } from "react-icons/io5";
 
 export default function NavBar() {
   return (
     <div>
-      <p>NavBar</p>
+      <Box
+        w="100%"
+        fontSize="18px!important"
+        p={["10px 10px", "10px 50px", "10px 50px"]}
+        bg="white"
+        position="relative"
+      >
+        <SimpleGrid minChildWidth="40px">
+          <Image
+            h="36px"
+            src="https://github.com/kobra-dev.png"
+            display={["none", "none", "inline-block"]}
+          />
+          <Box textAlign={"right"}>
+            <Image
+              h="36px"
+              src="https://github.com/kobra-dev.png"
+              display={["inline-block", "none", "none"]}
+              position="absolute"
+              style={{ position: "absolute", left: "0" }}
+              left="20"
+            />
+            <Button
+              bg="#FFF"
+              ml={["1rem", "0rem", "0rem"]}
+              mr={["0.5rem", "1rem", "1rem"]}
+              p={["0rem 0.5rem"]}
+            >
+              Docs
+            </Button>
+            <Button
+              bg="#FFF"
+              mr={["0.5rem", "1rem", "1rem"]}
+              p={["0rem 0.5rem"]}
+            >
+              Studio
+            </Button>
+            <Button
+              bg="#F94040"
+              color="#fff"
+              _hover={{ bg: "#000" }}
+              p={["0rem 0.5rem"]}
+            >
+              Get Started
+            </Button>
+          </Box>
+        </SimpleGrid>
+      </Box>
     </div>
   );
 }

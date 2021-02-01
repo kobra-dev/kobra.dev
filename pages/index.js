@@ -1,4 +1,5 @@
 import Head from "next/head";
+import NavBar from "../components/NavBar";
 
 // TODO: Fix favicon
 
@@ -14,6 +15,11 @@ export default function Home() {
       </Head>
 
       <main>
+        <NavBar />
+        <div style={{ paddingTop: "100vh", background: "#007B36" }} /> 
+        {
+          // Temporary 
+        }
         <h1>Welcome to Kobra!</h1>
       </main>
 
