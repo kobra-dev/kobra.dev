@@ -1,6 +1,4 @@
-import styles from "../styles/Home.module.css";
-
-export default function NavBar() {
+export default function Demo() {
   return (
     <div>
       <p>Demo</p>
