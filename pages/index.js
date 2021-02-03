@@ -22,7 +22,6 @@ export default function Home() {
           // Temporary
         }
         <Demo />
-        <h1>Welcome to Kobra!</h1>
       </main>
     </div>
   );
