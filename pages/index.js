@@ -1,6 +1,7 @@
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Demo from "../components/Demo";
+import Reviews from "../components/Reviews";
 
 // TODO: Fix favicon
 
@@ -21,6 +22,7 @@ export default function Home() {
         {
           // Temporary
         }
+        <Reviews />
         <Demo />
       </main>
     </div>
