@@ -20,10 +20,10 @@ export default function Masthead(props: MastheadProps) {
             px="50px"
             mb={16}
         >
-            <Box w={{ base: "50%" }}>
+            <Box w={{ base: "50%" }} mb={{ base: 8, lg: 0}}>
                 <Image src={props.imageSrc} size="100%" rounded="1rem" shadow="2xl"/>
             </Box>
-            <Box w={{base: "50%" }} rounded="1rem" ml={8} bg="brand.500" p={8}>
+            <Box w={{base: "50%" }} rounded="1rem" ml={{ base: 0, lg: 8}} bg="brand.500" p={8}>
                 <Stack spacing={4} align={["center", "center", "flex-start", "flex-start"]}>
                     <Heading as="h1" size="3xl" fontWeight="bold" color="gray.50">{props.heading}</Heading>
                     <Heading as="h2" size="xl" color="brand.100">{props.subheading}</Heading>
