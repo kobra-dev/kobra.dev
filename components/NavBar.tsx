@@ -48,10 +48,8 @@ export default function NavBar() {
               Studio
             </Button>
             <Button
-              bg="#F94040"
-              color="#fff"
+              colorScheme="brand"
               _hover={{ bg: "#000" }}
-              p={["0rem 0.5rem"]}
             >
               Get Started
             </Button>
