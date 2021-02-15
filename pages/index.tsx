@@ -10,6 +10,7 @@ import Features from "../components/Features";
 import { Box, Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
 import { Fragment } from "react";
+import IconOrImage from "../components/IconOrImage";
 
 const SECTION_BACKGROUNDS = {
   white: [
@@ -45,10 +46,11 @@ export default function Home(props: IndexProps) {
                 <Divider/>
               )}
               { section.__typename === "Content" ? (
-                // TODO: add handling of image (also in features)
                 <Content
                   heading={section.heading}
                   description={section.contentDescription}
+                  image={section.media &&
+                    <IconOrImage imageUrl={section.media.image?.url} faIconName={section.media.faIconName}/>}
                 />
               ) : section.__typename === "Demo" ? (
                 <Demo
@@ -61,7 +63,9 @@ export default function Home(props: IndexProps) {
                   description={section.featuresDescription ?? undefined}
                   features={section.featuresCollection?.items.map(feature => ({
                     heading: feature.heading,
-                    description: feature.description ?? undefined
+                    description: feature.description ?? undefined,
+                    icon: feature.media &&
+                      <IconOrImage imageUrl={feature.media.image?.url} faIconName={feature.media.faIconName}/>
                   }))}
                 />
               ) : section.__typename === "Masthead" ? (

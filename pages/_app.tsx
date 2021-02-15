@@ -1,6 +1,14 @@
 import "../styles/globals.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { AppProps } from 'next/app';
+import { useEffect } from "react";
+
+/*import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+// TODO: find a way to only import the needed icons
+
+library.add(fas);*/
 
 const theme = extendTheme({
   colors: {

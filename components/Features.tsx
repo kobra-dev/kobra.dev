@@ -35,13 +35,13 @@ export default function Features(props: FeaturesProps) {
                     <Wrap spacing={4} justify="center">
                         {props.features.map(feature => (
                             <WrapItem key={feature.heading + feature.description} borderWidth="1px" p={4} w="400px">
-                                <Box>
+                                <Flex justify="center" direction="column" textAlign="center">
                                     {feature.icon}
                                     <Heading as="h3" size="lg">{feature.heading}</Heading>
                                     {feature.description && (
                                         <Text fontSize="md">{feature.description}</Text>
                                     )}
-                                </Box>
+                                </Flex>
                             </WrapItem>
                         ))}
                     </Wrap>

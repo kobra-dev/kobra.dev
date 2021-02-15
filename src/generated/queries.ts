@@ -30,6 +30,8 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  iconOrImage?: Maybe<IconOrImage>;
+  iconOrImageCollection?: Maybe<IconOrImageCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
   features?: Maybe<Features>;
@@ -40,8 +42,6 @@ export type Query = {
   contentCollection?: Maybe<ContentCollection>;
   feature?: Maybe<Feature>;
   featureCollection?: Maybe<FeatureCollection>;
-  iconOrImage?: Maybe<IconOrImage>;
-  iconOrImageCollection?: Maybe<IconOrImageCollection>;
   masthead?: Maybe<Masthead>;
   mastheadCollection?: Maybe<MastheadCollection>;
   keyValuePair?: Maybe<KeyValuePair>;
@@ -63,6 +63,23 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryIconOrImageArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryIconOrImageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<IconOrImageFilter>;
+  order?: Maybe<Array<Maybe<IconOrImageOrder>>>;
 };
 
 
@@ -148,23 +165,6 @@ export type QueryFeatureCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<FeatureFilter>;
   order?: Maybe<Array<Maybe<FeatureOrder>>>;
-};
-
-
-export type QueryIconOrImageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryIconOrImageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<IconOrImageFilter>;
-  order?: Maybe<Array<Maybe<IconOrImageOrder>>>;
 };
 
 
@@ -387,38 +387,38 @@ export type IconOrImageCollection = {
   items: Array<IconOrImage>;
 };
 
-/** Either a Chakra UI icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
+/** Either a Font Awesome icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
 export type IconOrImage = Entry & {
   __typename?: 'IconOrImage';
   sys: Sys;
   linkedFrom?: Maybe<IconOrImageLinkingCollections>;
   id?: Maybe<Scalars['String']>;
   image?: Maybe<Asset>;
-  chakraUiIconName?: Maybe<Scalars['String']>;
+  faIconName?: Maybe<Scalars['String']>;
 };
 
 
-/** Either a Chakra UI icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
+/** Either a Font Awesome icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
 export type IconOrImageLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** Either a Chakra UI icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
+/** Either a Font Awesome icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
 export type IconOrImageIdArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** Either a Chakra UI icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
+/** Either a Font Awesome icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
 export type IconOrImageImageArgs = {
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** Either a Chakra UI icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
-export type IconOrImageChakraUiIconNameArgs = {
+/** Either a Font Awesome icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
+export type IconOrImageFaIconNameArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
@@ -1054,6 +1054,42 @@ export type AssetCollection = {
   items: Array<Maybe<Asset>>;
 };
 
+export type IconOrImageFilter = {
+  sys?: Maybe<SysFilter>;
+  id_exists?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  id_not?: Maybe<Scalars['String']>;
+  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains?: Maybe<Scalars['String']>;
+  id_not_contains?: Maybe<Scalars['String']>;
+  image_exists?: Maybe<Scalars['Boolean']>;
+  faIconName_exists?: Maybe<Scalars['Boolean']>;
+  faIconName?: Maybe<Scalars['String']>;
+  faIconName_not?: Maybe<Scalars['String']>;
+  faIconName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  faIconName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  faIconName_contains?: Maybe<Scalars['String']>;
+  faIconName_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<IconOrImageFilter>>>;
+  AND?: Maybe<Array<Maybe<IconOrImageFilter>>>;
+};
+
+export enum IconOrImageOrder {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  FaIconNameAsc = 'faIconName_ASC',
+  FaIconNameDesc = 'faIconName_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type PageFilter = {
   sys?: Maybe<SysFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
@@ -1195,13 +1231,13 @@ export type CfIconOrImageNestedFilter = {
   id_contains?: Maybe<Scalars['String']>;
   id_not_contains?: Maybe<Scalars['String']>;
   image_exists?: Maybe<Scalars['Boolean']>;
-  chakraUiIconName_exists?: Maybe<Scalars['Boolean']>;
-  chakraUiIconName?: Maybe<Scalars['String']>;
-  chakraUiIconName_not?: Maybe<Scalars['String']>;
-  chakraUiIconName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  chakraUiIconName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  chakraUiIconName_contains?: Maybe<Scalars['String']>;
-  chakraUiIconName_not_contains?: Maybe<Scalars['String']>;
+  faIconName_exists?: Maybe<Scalars['Boolean']>;
+  faIconName?: Maybe<Scalars['String']>;
+  faIconName_not?: Maybe<Scalars['String']>;
+  faIconName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  faIconName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  faIconName_contains?: Maybe<Scalars['String']>;
+  faIconName_not_contains?: Maybe<Scalars['String']>;
   OR?: Maybe<Array<Maybe<CfIconOrImageNestedFilter>>>;
   AND?: Maybe<Array<Maybe<CfIconOrImageNestedFilter>>>;
 };
@@ -1244,42 +1280,6 @@ export type FeatureFilter = {
 export enum FeatureOrder {
   HeadingAsc = 'heading_ASC',
   HeadingDesc = 'heading_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type IconOrImageFilter = {
-  sys?: Maybe<SysFilter>;
-  id_exists?: Maybe<Scalars['Boolean']>;
-  id?: Maybe<Scalars['String']>;
-  id_not?: Maybe<Scalars['String']>;
-  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains?: Maybe<Scalars['String']>;
-  id_not_contains?: Maybe<Scalars['String']>;
-  image_exists?: Maybe<Scalars['Boolean']>;
-  chakraUiIconName_exists?: Maybe<Scalars['Boolean']>;
-  chakraUiIconName?: Maybe<Scalars['String']>;
-  chakraUiIconName_not?: Maybe<Scalars['String']>;
-  chakraUiIconName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  chakraUiIconName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  chakraUiIconName_contains?: Maybe<Scalars['String']>;
-  chakraUiIconName_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<IconOrImageFilter>>>;
-  AND?: Maybe<Array<Maybe<IconOrImageFilter>>>;
-};
-
-export enum IconOrImageOrder {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  ChakraUiIconNameAsc = 'chakraUiIconName_ASC',
-  ChakraUiIconNameDesc = 'chakraUiIconName_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -1428,7 +1428,7 @@ export type KeyValuePairDataFragment = (
 
 export type IconOrImageDataFragment = (
   { __typename?: 'IconOrImage' }
-  & Pick<IconOrImage, 'chakraUiIconName'>
+  & Pick<IconOrImage, 'faIconName'>
   & { image?: Maybe<(
     { __typename?: 'Asset' }
     & Pick<Asset, 'url'>
@@ -1506,7 +1506,7 @@ export const IconOrImageDataFragmentDoc = gql`
   image {
     url
   }
-  chakraUiIconName
+  faIconName
 }
     `;
 export const ContentDataFragmentDoc = gql`

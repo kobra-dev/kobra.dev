@@ -47,7 +47,7 @@ fragment IconOrImageData on IconOrImage {
   image {
     url
   }
-  chakraUiIconName
+  faIconName
 }
 
 fragment ContentData on Content {
