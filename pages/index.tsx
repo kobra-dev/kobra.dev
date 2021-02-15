@@ -11,8 +11,6 @@ import { Box, Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
 import { Fragment } from "react";
 
-// TODO: Fix favicon
-
 const SECTION_BACKGROUNDS = {
   white: [
     "Content",
@@ -32,7 +30,7 @@ export default function Home(props: IndexProps) {
           {props.productName} | {props.tagline}
         </title>
 
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href={props.faviconUrl} />
       </Head>
 
       <main>
@@ -88,6 +86,7 @@ interface IndexProps {
   productName: string,
   tagline: string,
   logoUrl: string,
+  faviconUrl: string,
   // Can't make it a fragment so I had to copy and paste it from queries.ts
   contents: Array<(
     { __typename?: 'Content' }
@@ -140,6 +139,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async (context) => {
       productName: findValueForKey(kvps, "Product name"),
       tagline: findValueForKey(kvps, "Tagline"),
       logoUrl: findUrlForAssetTitle(assets, "Product logo") ?? "",
+      faviconUrl: findUrlForAssetTitle(assets, "Favicon") ?? "",
       contents
     },
     revalidate: 10

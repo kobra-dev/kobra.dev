@@ -1566,7 +1566,7 @@ export const IndexDataDocument = gql`
       ...KeyValuePairData
     }
   }
-  assetCollection(where: {title_in: ["Product logo"]}) {
+  assetCollection(where: {title_in: ["Product logo", "Favicon"]}) {
     items {
       ...IndexAssetData
     }
