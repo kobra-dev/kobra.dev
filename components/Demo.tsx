@@ -1,20 +1,25 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { Image } from "@geist-ui/react";
 
-export default function Demo() {
+interface DemoProps {
+  heading: string,
+  url: string
+}
+
+export default function Demo(props: DemoProps) {
   return (
     <Box pt={16} bg="brand.500" w="100%">
       <Heading color="white" textAlign="center">
-        Try it out!
+        {props.heading}
       </Heading>
       <br />
       <Box pb={16}>
         <Image.Browser
-          url="https://studio.kobra.dev"
+          url={props.url}
           style={{ width: 1280, maxWidth: "90%" }}
         >
           <iframe
-            src="https://studio.kobra.dev"
+            src={props.url}
             style={{ width: "100%", height: "75vh" }}
             loading="eager"
           />

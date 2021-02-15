@@ -1,12 +1,35 @@
 query IndexData {
-  keyValuePairCollection(where: { key_in: ["Product name", "Tagline", "Studio URL"] }) {
+  keyValuePairCollection(where: {
+    key_in: ["Product name", "Tagline"]
+  }) {
     items {
       ...KeyValuePairData
     }
   }
-  assetCollection(where: { title_in: ["Product logo", "Masthead demo image"] }) {
+  assetCollection(where: { title_in: ["Product logo"] }) {
     items {
-      ...IndexAssetData
+      title
+      url
+    }
+  }
+  pageCollection(where: { id: "Index" }, limit: 1) {
+    items {
+      contentsCollection {
+        items {
+          ... on Content {
+            ...ContentData
+          }
+          ... on Demo {
+            ...DemoData
+          }
+          ... on Features {
+            ...FeaturesData
+          }
+          ... on Masthead {
+            ...MastheadData
+          }
+        }
+      }
     }
   }
 }
@@ -16,7 +39,55 @@ fragment KeyValuePairData on KeyValuePair {
   value
 }
 
-fragment IndexAssetData on Asset {
-  title
-  url
+fragment IconOrImageData on IconOrImage {
+  image {
+    url
+  }
+  chakraUiIconName
+}
+
+fragment ContentData on Content {
+  heading
+  contentDescription: description
+  media {
+    ...IconOrImageData
+  }
+}
+
+fragment DemoData on Demo {
+  heading
+  url {
+    value
+  }
+}
+
+fragment FeaturesData on Features {
+  heading
+  featuresDescription: description
+  featuresCollection(limit: 10) {
+    items {
+      heading
+      description
+      media {
+        ...IconOrImageData
+      }
+    }
+  }
+}
+
+fragment MastheadData on Masthead {
+  heading
+  subheading {
+    value
+  }
+  image {
+    url
+  }
+  ctaText {
+    value
+  }
+  ctaLink {
+    value
+  }
+  subtext
 }
