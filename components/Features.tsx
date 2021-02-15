@@ -34,7 +34,7 @@ export default function Features(props: FeaturesProps) {
                 <>
                     <Wrap spacing={4} justify="center">
                         {props.features.map(feature => (
-                            <WrapItem borderWidth="1px" p={4} w="400px">
+                            <WrapItem key={feature.heading + feature.description} borderWidth="1px" p={4} w="400px">
                                 <Box>
                                     {feature.icon}
                                     <Heading as="h3" size="lg">{feature.heading}</Heading>

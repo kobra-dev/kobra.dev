@@ -7,10 +7,22 @@ import { GetStaticProps } from "next";
 import { initializeApollo } from "../src/apolloClient";
 import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment } from "../src/generated/queries";
 import Features from "../components/Features";
-import { Divider, Stack } from "@chakra-ui/react";
+import { Box, Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
+import { Fragment } from "react";
 
 // TODO: Fix favicon
+
+const SECTION_BACKGROUNDS = {
+  white: [
+    "Content",
+    "Features"
+  ],
+  brand: [
+    "Masthead",
+    "Demo"
+  ]
+};
 
 export default function Home(props: IndexProps) {
   return (
@@ -26,37 +38,45 @@ export default function Home(props: IndexProps) {
       <main>
         <NavBar logoUrl={props.logoUrl} />
         <Stack spacing={8} align="center">
-          {props.contents.map(section => (
-            section.__typename === "Content" ? (
-              // TODO: add handling of image (also in features)
-              <Content
-                heading={section.heading}
-                description={section.contentDescription}
-              />
-            ) : section.__typename === "Demo" ? (
-              <Demo
-                heading={section.heading}
-                url={section.url.value}
-              />
-            ) : section.__typename === "Features" ? (
-              <Features
-                heading={section.heading}
-                description={section.featuresDescription ?? undefined}
-                features={section.featuresCollection?.items.map(feature => ({
-                  heading: feature.heading,
-                  description: feature.description ?? undefined
-                }))}
-              />
-            ) : section.__typename === "Masthead" ? (
-              <Masthead
-                heading={section.heading}
-                subheading={section.subheading.value}
-                imageSrc={section.image.url ?? ""}
-                ctaLink={section.ctaLink.value}
-                ctaText={section.ctaText.value}
-                subtext={section.subtext}
-              />
-            ) : undefined
+          {props.contents.map((section, index, array) => (
+            <Fragment key={section.__typename + section.heading}>
+              {index !== 0 &&
+                Object.values(SECTION_BACKGROUNDS)
+                  .filter((arr) => arr.includes(section.__typename ?? ""))[0]
+                  .includes(array[index - 1].__typename ?? "") && (
+                <Divider/>
+              )}
+              { section.__typename === "Content" ? (
+                // TODO: add handling of image (also in features)
+                <Content
+                  heading={section.heading}
+                  description={section.contentDescription}
+                />
+              ) : section.__typename === "Demo" ? (
+                <Demo
+                  heading={section.heading}
+                  url={section.url.value}
+                />
+              ) : section.__typename === "Features" ? (
+                <Features
+                  heading={section.heading}
+                  description={section.featuresDescription ?? undefined}
+                  features={section.featuresCollection?.items.map(feature => ({
+                    heading: feature.heading,
+                    description: feature.description ?? undefined
+                  }))}
+                />
+              ) : section.__typename === "Masthead" ? (
+                <Masthead
+                  heading={section.heading}
+                  subheading={section.subheading.value}
+                  imageSrc={section.image.url ?? ""}
+                  ctaLink={section.ctaLink.value}
+                  ctaText={section.ctaText.value}
+                  subtext={section.subtext}
+                />
+              ) : undefined }
+            </Fragment>
           ))}
         </Stack>
       </main>
