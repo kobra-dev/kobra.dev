@@ -20,7 +20,6 @@ export default function Demo() {
           />
         </Image.Browser>
       </Box>
-      
     </Box>
   );
 }

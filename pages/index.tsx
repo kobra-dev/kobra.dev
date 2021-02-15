@@ -25,7 +25,7 @@ export default function Home(props: IndexProps) {
         <Masthead
           heading={props.productName}
           subheading={props.tagline}
-          imageSrc="https://picsum.photos/800/600"
+          imageSrc={props.mastheadDemoUrl}
           ctaLink={props.studioUrl}
           ctaText="Try now"
           subtext="No signup required"
@@ -41,6 +41,7 @@ interface IndexProps {
   productName: string,
   tagline: string,
   logoUrl: string,
+  mastheadDemoUrl: string,
   studioUrl: string
 }
 
@@ -74,6 +75,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async (context) => {
       productName: findValueForKey(kvps, "Product name"),
       tagline: findValueForKey(kvps, "Tagline"),
       logoUrl: findUrlForAssetTitle(assets, "Product logo") ?? "",
+      mastheadDemoUrl: findUrlForAssetTitle(assets, "Masthead demo image") ?? "",
       studioUrl: findValueForKey(kvps, "Studio URL")
     },
     revalidate: 10
