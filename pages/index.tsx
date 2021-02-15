@@ -5,7 +5,7 @@ import Reviews from "../components/Reviews";
 import Masthead from "../components/Masthead";
 import { GetStaticProps } from "next";
 import { initializeApollo } from "../src/apolloClient";
-import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment } from "../src/generated/queries";
+import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment } from "../src/generated/queries";
 import Features from "../components/Features";
 import { Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
@@ -119,7 +119,7 @@ export const getStaticProps: GetStaticProps<IndexProps> = async (context) => {
     props: {
       productName: findValueForKey(kvps, "Product name"),
       tagline: findValueForKey(kvps, "Tagline"),
-      logoUrl: findUrlForAssetTitle(assets, "Product logo"),
+      logoUrl: findUrlForAssetTitle(assets, "Product logo") ?? "",
       contents
     },
     revalidate: 10

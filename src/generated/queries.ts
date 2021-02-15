@@ -1390,7 +1390,7 @@ export type IndexDataQuery = (
     { __typename?: 'AssetCollection' }
     & { items: Array<Maybe<(
       { __typename?: 'Asset' }
-      & Pick<Asset, 'title' | 'url'>
+      & IndexAssetDataFragment
     )>> }
   )>, pageCollection?: Maybe<(
     { __typename?: 'PageCollection' }
@@ -1414,6 +1414,11 @@ export type IndexDataQuery = (
       ) }
     )> }
   )> }
+);
+
+export type IndexAssetDataFragment = (
+  { __typename?: 'Asset' }
+  & Pick<Asset, 'title' | 'url'>
 );
 
 export type KeyValuePairDataFragment = (
@@ -1484,6 +1489,12 @@ export type MastheadDataFragment = (
   ) }
 );
 
+export const IndexAssetDataFragmentDoc = gql`
+    fragment IndexAssetData on Asset {
+  title
+  url
+}
+    `;
 export const KeyValuePairDataFragmentDoc = gql`
     fragment KeyValuePairData on KeyValuePair {
   key
@@ -1557,8 +1568,7 @@ export const IndexDataDocument = gql`
   }
   assetCollection(where: {title_in: ["Product logo"]}) {
     items {
-      title
-      url
+      ...IndexAssetData
     }
   }
   pageCollection(where: {id: "Index"}, limit: 1) {
@@ -1583,6 +1593,7 @@ export const IndexDataDocument = gql`
   }
 }
     ${KeyValuePairDataFragmentDoc}
+${IndexAssetDataFragmentDoc}
 ${ContentDataFragmentDoc}
 ${DemoDataFragmentDoc}
 ${FeaturesDataFragmentDoc}

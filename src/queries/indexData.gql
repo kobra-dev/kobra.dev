@@ -8,8 +8,7 @@ query IndexData {
   }
   assetCollection(where: { title_in: ["Product logo"] }) {
     items {
-      title
-      url
+      ...IndexAssetData
     }
   }
   pageCollection(where: { id: "Index" }, limit: 1) {
@@ -32,6 +31,11 @@ query IndexData {
       }
     }
   }
+}
+
+fragment IndexAssetData on Asset {
+  title,
+  url
 }
 
 fragment KeyValuePairData on KeyValuePair {
