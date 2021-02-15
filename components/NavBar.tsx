@@ -7,7 +7,11 @@ import {
 } from "@chakra-ui/react";
 import { IoLogIn } from "react-icons/io5";
 
-export default function NavBar() {
+interface NavBarProps {
+  logoUrl: string
+}
+
+export default function NavBar(props: NavBarProps) {
   return (
     <div>
       <Box
@@ -20,13 +24,13 @@ export default function NavBar() {
         <SimpleGrid minChildWidth="40px">
           <Image
             h="36px"
-            src="https://github.com/kobra-dev.png"
+            src={props.logoUrl}
             display={["none", "none", "inline-block"]}
           />
           <Box textAlign={"right"}>
             <Image
               h="36px"
-              src="https://github.com/kobra-dev.png"
+              src={props.logoUrl}
               display={["inline-block", "none", "none"]}
               position="absolute"
               style={{ position: "absolute", left: "0" }}

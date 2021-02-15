@@ -1,5 +1,32 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Setup
+
+Create the following env files:
+
+- `.env.local`:
+  ```
+  NEXT_PUBLIC_CONTENTFUL_SPACE_ID=[Insert space ID (not the name) here]
+  NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN=[Insert access token here]
+  ```
+- `.env.contentful-codegen`:
+  ```
+  CONTENTFUL_CONTENT_TOKEN=[Insert previous access token here]
+  CONTENTFUL_MANAGEMENT_TOKEN=[Insert management token (not the same as the access token) here]
+  CONTENTFUL_SPACE_ID=[Insert space ID from previous file here]
+  ```
+
+Next, install all of the packages in the main package:
+
+```bash
+yarn
+```
+
+Finally, update the generated types by running:
+```bash
+yarn gql-codegen
+```
+
 ## Getting Started
 
 First, run the development server:

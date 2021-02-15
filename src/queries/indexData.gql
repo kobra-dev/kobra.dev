@@ -1,0 +1,22 @@
+query IndexData {
+  keyValuePairCollection(where: { key_in: ["Product name", "Tagline", "Studio URL"] }) {
+    items {
+      ...KeyValuePairData
+    }
+  }
+  assetCollection(where: { title_in: ["Product logo"] }) {
+    items {
+      ...IndexAssetData
+    }
+  }
+}
+
+fragment KeyValuePairData on KeyValuePair {
+  key
+  value
+}
+
+fragment IndexAssetData on Asset {
+  title
+  url
+}
