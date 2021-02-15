@@ -3,7 +3,7 @@ import { Image } from "@geist-ui/react";
 
 export default function Demo() {
   return (
-    <Box pt={16} bg="brand.500">
+    <Box pt={16} bg="brand.500" w="100%">
       <Heading color="white" textAlign="center">
         Try it out!
       </Heading>

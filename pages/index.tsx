@@ -6,6 +6,9 @@ import Masthead from "../components/Masthead";
 import { GetStaticProps } from "next";
 import { initializeApollo } from "../src/apolloClient";
 import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, IndexAssetDataFragment, Maybe } from "../src/generated/queries";
+import Features from "../components/Features";
+import { Divider, Stack } from "@chakra-ui/react";
+import Content from "../components/Content";
 
 // TODO: Fix favicon
 
@@ -22,16 +25,42 @@ export default function Home(props: IndexProps) {
 
       <main>
         <NavBar logoUrl={props.logoUrl} />
-        <Masthead
-          heading={props.productName}
-          subheading={props.tagline}
-          imageSrc={props.mastheadDemoUrl}
-          ctaLink={props.studioUrl}
-          ctaText="Try now"
-          subtext="No signup required"
-        />
-        <Reviews />
-        <Demo />
+        <Stack spacing={8} align="center">
+          <Masthead
+            heading={props.productName}
+            subheading={props.tagline}
+            imageSrc={props.mastheadDemoUrl}
+            ctaLink={props.studioUrl}
+            ctaText="Try now"
+            subtext="No signup required"
+          />
+          <Content
+            heading="Unleash your inner data scientist."
+            description="Kobra is a visual programming language for machine learning, built by data scientists and engineers to make ML easy to learn and experiment with."
+          />
+          <Divider/>
+          <Features
+            heading="Design ML projects with a few clicks."
+            description="Rapidly prototype machine learning models and share them with the community."
+            features={[
+              {
+                heading: "Explore ML.",
+                description: "Kobra gives you all the tools to explore different types of machine learning models, like decision trees or regression algorithms."
+              },
+              {
+                heading: "No coding required.",
+                description: "Use the intuitive visual interface to drag-and-drop blocks together, and Kobra does all of the work for you behind the scenes."
+              },
+              {
+                heading: "Experiment faster, learn more easily.",
+                description: "Build projects in minutes without having to write code or deal with programming concepts like classes, functions, or the command line."
+              }
+            ]}
+          />
+          <Divider/>
+          <Reviews />
+          <Demo />
+        </Stack>
       </main>
     </div>
   );

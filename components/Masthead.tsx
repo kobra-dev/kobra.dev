@@ -17,6 +17,7 @@ export default function Masthead(props: MastheadProps) {
             justify={{ base: "center" }}
             direction={{ base: "column", lg: "row"}}
             minH="70vh"
+            w="100%"
             px="50px"
             mb={16}
             py={{ base: 8, lg: 0}}
