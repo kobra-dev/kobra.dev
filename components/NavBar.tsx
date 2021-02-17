@@ -24,11 +24,7 @@ export default function NavBar(props: NavBarProps) {
       >
         <Flex>
           <Box flex={1}>
-            <Image
-              h="36px"
-              src={props.logoUrl}
-              display={"inline-block"}
-            />
+            <Image h="36px" src={props.logoUrl} display={"inline-block"} />
           </Box>
           <Button
             bg="#FFF"
