@@ -6,13 +6,16 @@ query IndexData {
       ...KeyValuePairData
     }
   }
-  assetCollection(where: { title_in: ["Product logo", "Favicon"] }) {
+  assetCollection(where: { title_in: ["Favicon"] }) {
     items {
       ...IndexAssetData
     }
   }
   pageCollection(where: { id: "Index" }, limit: 1) {
     items {
+      navbar {
+        ...NavbarData
+      }
       contentsCollection {
         items {
           ... on Content {
@@ -145,6 +148,20 @@ fragment ReviewsData on Reviews {
   reviewsCollection {
     items {
       ...ReviewData
+    }
+  }
+}
+
+fragment NavbarData on Navbar {
+  logo {
+    url
+  }
+  buttonsCollection {
+    items {
+      isBrandColorBackground
+      texturlPair {
+        ...TextUrlPairData
+      }
     }
   }
 }

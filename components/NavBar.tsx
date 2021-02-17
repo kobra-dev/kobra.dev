@@ -3,16 +3,25 @@ import {
   Button,
   Flex,
   Image,
-  SimpleGrid,
-  useBreakpointValue,
+  Link,
+  Stack,
 } from "@chakra-ui/react";
-import { IoLogIn } from "react-icons/io5";
+import { NavbarDataFragment } from "../src/generated/queries";
 
-interface NavBarProps {
-  logoUrl: string;
-}
+const NavbarButton = (props: { isBrand: boolean, children: React.ReactNode }) => props.isBrand ? (
+  <Button colorScheme="brand" _hover={{ bg: "#000" }}>
+    {props.children}
+  </Button>
+) : (
+  <Button
+    bg="#FFF"
+    p={["0rem 0.5rem"]}
+  >
+    {props.children}
+  </Button>
+);
 
-export default function NavBar(props: NavBarProps) {
+export default function NavBar(props: NavbarDataFragment) {
   return (
     <div>
       <Box
@@ -24,22 +33,17 @@ export default function NavBar(props: NavBarProps) {
       >
         <Flex>
           <Box flex={1}>
-            <Image h="36px" src={props.logoUrl} display={"inline-block"} />
+            <Image h="36px" src={props.logo.url ?? ""} display={"inline-block"} />
           </Box>
-          <Button
-            bg="#FFF"
-            ml={["1rem", "0rem", "0rem"]}
-            mr={["0.5rem", "1rem", "1rem"]}
-            p={["0rem 0.5rem"]}
-          >
-            Docs
-          </Button>
-          <Button bg="#FFF" mr={["0.5rem", "1rem", "1rem"]} p={["0rem 0.5rem"]}>
-            Studio
-          </Button>
-          <Button colorScheme="brand" _hover={{ bg: "#000" }}>
-            Get Started
-          </Button>
+          <Stack ml={["1rem", "0rem", "0rem"]} spacing={["0.5rem", "1rem", "1rem"]} direction="row">
+            {props.buttonsCollection.items.map((button, index) => (
+              <Link key={index} href={button.texturlPair.url.value}>
+                <NavbarButton isBrand={button.isBrandColorBackground}>
+                  {button.texturlPair.text}
+                </NavbarButton>
+              </Link>
+            ))}
+          </Stack>
         </Flex>
       </Box>
     </div>

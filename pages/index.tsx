@@ -5,9 +5,9 @@ import Reviews from "../components/Reviews";
 import Masthead from "../components/Masthead";
 import { GetStaticProps } from "next";
 import { initializeApollo } from "../src/apolloClient";
-import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment, FooterDataFragment, ReviewsDataFragment } from "../src/generated/queries";
+import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment, FooterDataFragment, ReviewsDataFragment, NavbarDataFragment } from "../src/generated/queries";
 import Features from "../components/Features";
-import { Box, Divider, Stack } from "@chakra-ui/react";
+import { Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
 import { Fragment } from "react";
 import IconOrImage from "../components/IconOrImage";
@@ -39,7 +39,7 @@ export default function Home(props: IndexProps) {
       </Head>
 
       <main>
-        <NavBar logoUrl={props.logoUrl} />
+        <NavBar {...props.navbar}/>
         <Stack spacing={8} align="center">
           {props.contents.map((section, index, array) => (
             // I know it is a bad idea to use an index as the key but this list won't ever change so it should still work
@@ -111,8 +111,8 @@ export default function Home(props: IndexProps) {
 interface IndexProps {
   productName: string,
   tagline: string,
-  logoUrl: string,
   faviconUrl: string,
+  navbar: NavbarDataFragment,
   // Can't make it a fragment so I had to copy and paste it from queries.ts
   contents: Array<(
     { __typename?: 'Content' }
@@ -160,19 +160,19 @@ export const getStaticProps: GetStaticProps<IndexProps> = async (context) => {
     throw new Error("AssetCollection is undefined");
   }
 
-  const contents = data.pageCollection?.items[0].contentsCollection.items;
-
-  if(!contents) {
-    throw new Error("Contents is undefined");
+  const page = data.pageCollection?.items[0];
+  
+  if(!page) {
+    throw new Error("Page is undefined");
   }
 
   return {
     props: {
       productName: findValueForKey(kvps, "Product name"),
       tagline: findValueForKey(kvps, "Tagline"),
-      logoUrl: findUrlForAssetTitle(assets, "Product logo") ?? "",
       faviconUrl: findUrlForAssetTitle(assets, "Favicon") ?? "",
-      contents
+      navbar: page.navbar,
+      contents: page.contentsCollection.items
     },
     revalidate: 10
   };

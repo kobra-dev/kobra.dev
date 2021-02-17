@@ -32,6 +32,10 @@ export type Query = {
   assetCollection?: Maybe<AssetCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
+  navbar?: Maybe<Navbar>;
+  navbarCollection?: Maybe<NavbarCollection>;
+  navbarButton?: Maybe<NavbarButton>;
+  navbarButtonCollection?: Maybe<NavbarButtonCollection>;
   reviews?: Maybe<Reviews>;
   reviewsCollection?: Maybe<ReviewsCollection>;
   review?: Maybe<Review>;
@@ -92,6 +96,40 @@ export type QueryPageCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<PageFilter>;
   order?: Maybe<Array<Maybe<PageOrder>>>;
+};
+
+
+export type QueryNavbarArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryNavbarCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<NavbarFilter>;
+  order?: Maybe<Array<Maybe<NavbarOrder>>>;
+};
+
+
+export type QueryNavbarButtonArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryNavbarButtonCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<NavbarButtonFilter>;
+  order?: Maybe<Array<Maybe<NavbarButtonOrder>>>;
 };
 
 
@@ -453,6 +491,7 @@ export enum ImageFormat {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  navbarCollection?: Maybe<NavbarCollection>;
   mastheadCollection?: Maybe<MastheadCollection>;
   footerCollection?: Maybe<FooterCollection>;
   iconOrImageCollection?: Maybe<IconOrImageCollection>;
@@ -460,6 +499,14 @@ export type AssetLinkingCollections = {
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsNavbarCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -502,73 +549,53 @@ export type Entry = {
   sys: Sys;
 };
 
-export type MastheadCollection = {
-  __typename?: 'MastheadCollection';
+export type NavbarCollection = {
+  __typename?: 'NavbarCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Masthead>;
+  items: Array<Navbar>;
 };
 
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type Masthead = Entry & {
-  __typename?: 'Masthead';
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbar) */
+export type Navbar = Entry & {
+  __typename?: 'Navbar';
   sys: Sys;
-  linkedFrom?: Maybe<MastheadLinkingCollections>;
-  heading: Scalars['String'];
-  subheading: KeyValuePair;
-  image: Asset;
-  callToActionButton: FooterLink;
-  subtext: Scalars['String'];
+  linkedFrom?: Maybe<NavbarLinkingCollections>;
+  logo: Asset;
+  buttonsCollection: NavbarButtonsCollection;
 };
 
 
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type MastheadLinkedFromArgs = {
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbar) */
+export type NavbarLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type MastheadHeadingArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type MastheadSubheadingArgs = {
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbar) */
+export type NavbarLogoArgs = {
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type MastheadImageArgs = {
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbar) */
+export type NavbarButtonsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type MastheadCallToActionButtonArgs = {
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
-export type MastheadSubtextArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type MastheadLinkingCollections = {
-  __typename?: 'MastheadLinkingCollections';
+export type NavbarLinkingCollections = {
+  __typename?: 'NavbarLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   pageCollection?: Maybe<PageCollection>;
 };
 
 
-export type MastheadLinkingCollectionsEntryCollectionArgs = {
+export type NavbarLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -576,7 +603,7 @@ export type MastheadLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type MastheadLinkingCollectionsPageCollectionArgs = {
+export type NavbarLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -597,6 +624,7 @@ export type Page = Entry & {
   sys: Sys;
   linkedFrom?: Maybe<PageLinkingCollections>;
   id: Scalars['String'];
+  navbar: Navbar;
   contentsCollection: PageContentsCollection;
 };
 
@@ -609,6 +637,13 @@ export type PageLinkedFromArgs = {
 
 /** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
 export type PageIdArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
+export type PageNavbarArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
@@ -961,6 +996,7 @@ export type FooterLinkUrlArgs = {
 export type FooterLinkLinkingCollections = {
   __typename?: 'FooterLinkLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  navbarButtonCollection?: Maybe<NavbarButtonCollection>;
   mastheadCollection?: Maybe<MastheadCollection>;
   contentCollection?: Maybe<ContentCollection>;
   footerCollection?: Maybe<FooterCollection>;
@@ -968,6 +1004,14 @@ export type FooterLinkLinkingCollections = {
 
 
 export type FooterLinkLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FooterLinkLinkingCollectionsNavbarButtonCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -998,55 +1042,50 @@ export type FooterLinkLinkingCollectionsFooterCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type FooterCollection = {
-  __typename?: 'FooterCollection';
+export type NavbarButtonCollection = {
+  __typename?: 'NavbarButtonCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Footer>;
+  items: Array<NavbarButton>;
 };
 
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type Footer = Entry & {
-  __typename?: 'Footer';
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbarButton) */
+export type NavbarButton = Entry & {
+  __typename?: 'NavbarButton';
   sys: Sys;
-  linkedFrom?: Maybe<FooterLinkingCollections>;
-  id: Scalars['String'];
-  organizationName: KeyValuePair;
-  organizationIcon: Asset;
-  iconsCollection: FooterIconsCollection;
-  linksCollection: FooterLinksCollection;
+  linkedFrom?: Maybe<NavbarButtonLinkingCollections>;
+  isBrandColorBackground: Scalars['Boolean'];
+  texturlPair: FooterLink;
 };
 
 
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type FooterLinkedFromArgs = {
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbarButton) */
+export type NavbarButtonLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type FooterIdArgs = {
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbarButton) */
+export type NavbarButtonIsBrandColorBackgroundArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type FooterOrganizationNameArgs = {
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/navbarButton) */
+export type NavbarButtonTexturlPairArgs = {
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type FooterOrganizationIconArgs = {
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
+export type NavbarButtonLinkingCollections = {
+  __typename?: 'NavbarButtonLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  navbarCollection?: Maybe<NavbarCollection>;
 };
 
 
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type FooterIconsCollectionArgs = {
+export type NavbarButtonLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -1054,22 +1093,80 @@ export type FooterIconsCollectionArgs = {
 };
 
 
-/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
-export type FooterLinksCollectionArgs = {
+export type NavbarButtonLinkingCollectionsNavbarCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-export type FooterLinkingCollections = {
-  __typename?: 'FooterLinkingCollections';
+export type MastheadCollection = {
+  __typename?: 'MastheadCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Masthead>;
+};
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type Masthead = Entry & {
+  __typename?: 'Masthead';
+  sys: Sys;
+  linkedFrom?: Maybe<MastheadLinkingCollections>;
+  heading: Scalars['String'];
+  subheading: KeyValuePair;
+  image: Asset;
+  callToActionButton: FooterLink;
+  subtext: Scalars['String'];
+};
+
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type MastheadLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type MastheadHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type MastheadSubheadingArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type MastheadImageArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type MastheadCallToActionButtonArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A masthead section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/masthead) */
+export type MastheadSubtextArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type MastheadLinkingCollections = {
+  __typename?: 'MastheadLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   pageCollection?: Maybe<PageCollection>;
 };
 
 
-export type FooterLinkingCollectionsEntryCollectionArgs = {
+export type MastheadLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -1077,7 +1174,7 @@ export type FooterLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type FooterLinkingCollectionsPageCollectionArgs = {
+export type MastheadLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -1177,8 +1274,94 @@ export type FooterLinkCollection = {
   items: Array<FooterLink>;
 };
 
-export type AccountCollection = {
-  __typename?: 'AccountCollection';
+export type FooterCollection = {
+  __typename?: 'FooterCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Footer>;
+};
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type Footer = Entry & {
+  __typename?: 'Footer';
+  sys: Sys;
+  linkedFrom?: Maybe<FooterLinkingCollections>;
+  id: Scalars['String'];
+  organizationName: KeyValuePair;
+  organizationIcon: Asset;
+  iconsCollection: FooterIconsCollection;
+  linksCollection: FooterLinksCollection;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterIdArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterOrganizationNameArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterOrganizationIconArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterIconsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterLinksCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FooterLinkingCollections = {
+  __typename?: 'FooterLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
+};
+
+
+export type FooterLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FooterLinkingCollectionsPageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FooterIconsCollection = {
+  __typename?: 'FooterIconsCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
@@ -1292,6 +1475,22 @@ export type FontAwesomeIconLinkingCollectionsAccountCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
+export type AccountCollection = {
+  __typename?: 'AccountCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Account>;
+};
+
+export type FooterLinksCollection = {
+  __typename?: 'FooterLinksCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<FooterLink>;
+};
+
 export type DemoCollection = {
   __typename?: 'DemoCollection';
   total: Scalars['Int'];
@@ -1348,22 +1547,6 @@ export type DemoLinkingCollectionsPageCollectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
-};
-
-export type FooterIconsCollection = {
-  __typename?: 'FooterIconsCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Account>;
-};
-
-export type FooterLinksCollection = {
-  __typename?: 'FooterLinksCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<FooterLink>;
 };
 
 /** A reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/reviews) */
@@ -1481,6 +1664,14 @@ export type ReviewsCollection = {
   skip: Scalars['Int'];
   limit: Scalars['Int'];
   items: Array<Reviews>;
+};
+
+export type NavbarButtonsCollection = {
+  __typename?: 'NavbarButtonsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<NavbarButton>;
 };
 
 export type IconOrImageCollection = {
@@ -1622,6 +1813,7 @@ export type AssetCollection = {
 };
 
 export type PageFilter = {
+  navbar?: Maybe<CfNavbarNestedFilter>;
   sys?: Maybe<SysFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
@@ -1630,14 +1822,80 @@ export type PageFilter = {
   id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   id_contains?: Maybe<Scalars['String']>;
   id_not_contains?: Maybe<Scalars['String']>;
+  navbar_exists?: Maybe<Scalars['Boolean']>;
   contentsCollection_exists?: Maybe<Scalars['Boolean']>;
   OR?: Maybe<Array<Maybe<PageFilter>>>;
   AND?: Maybe<Array<Maybe<PageFilter>>>;
 };
 
+export type CfNavbarNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  logo_exists?: Maybe<Scalars['Boolean']>;
+  buttonsCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<CfNavbarNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfNavbarNestedFilter>>>;
+};
+
 export enum PageOrder {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type NavbarFilter = {
+  sys?: Maybe<SysFilter>;
+  logo_exists?: Maybe<Scalars['Boolean']>;
+  buttonsCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<NavbarFilter>>>;
+  AND?: Maybe<Array<Maybe<NavbarFilter>>>;
+};
+
+export enum NavbarOrder {
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type NavbarButtonFilter = {
+  texturlPair?: Maybe<CfFooterLinkNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  isBrandColorBackground_exists?: Maybe<Scalars['Boolean']>;
+  isBrandColorBackground?: Maybe<Scalars['Boolean']>;
+  isBrandColorBackground_not?: Maybe<Scalars['Boolean']>;
+  texturlPair_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<NavbarButtonFilter>>>;
+  AND?: Maybe<Array<Maybe<NavbarButtonFilter>>>;
+};
+
+export type CfFooterLinkNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  text_exists?: Maybe<Scalars['Boolean']>;
+  text?: Maybe<Scalars['String']>;
+  text_not?: Maybe<Scalars['String']>;
+  text_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_contains?: Maybe<Scalars['String']>;
+  text_not_contains?: Maybe<Scalars['String']>;
+  url_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<CfFooterLinkNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfFooterLinkNestedFilter>>>;
+};
+
+export enum NavbarButtonOrder {
+  IsBrandColorBackgroundAsc = 'isBrandColorBackground_ASC',
+  IsBrandColorBackgroundDesc = 'isBrandColorBackground_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -1759,20 +2017,6 @@ export type CfKeyValuePairNestedFilter = {
   value_not_contains?: Maybe<Scalars['String']>;
   OR?: Maybe<Array<Maybe<CfKeyValuePairNestedFilter>>>;
   AND?: Maybe<Array<Maybe<CfKeyValuePairNestedFilter>>>;
-};
-
-export type CfFooterLinkNestedFilter = {
-  sys?: Maybe<SysFilter>;
-  text_exists?: Maybe<Scalars['Boolean']>;
-  text?: Maybe<Scalars['String']>;
-  text_not?: Maybe<Scalars['String']>;
-  text_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  text_contains?: Maybe<Scalars['String']>;
-  text_not_contains?: Maybe<Scalars['String']>;
-  url_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<CfFooterLinkNestedFilter>>>;
-  AND?: Maybe<Array<Maybe<CfFooterLinkNestedFilter>>>;
 };
 
 export enum MastheadOrder {
@@ -2202,7 +2446,10 @@ export type IndexDataQuery = (
     { __typename?: 'PageCollection' }
     & { items: Array<(
       { __typename?: 'Page' }
-      & { contentsCollection: (
+      & { navbar: (
+        { __typename?: 'Navbar' }
+        & NavbarDataFragment
+      ), contentsCollection: (
         { __typename?: 'PageContentsCollection' }
         & { items: Array<(
           { __typename?: 'Content' }
@@ -2356,6 +2603,24 @@ export type ReviewsDataFragment = (
   ) }
 );
 
+export type NavbarDataFragment = (
+  { __typename?: 'Navbar' }
+  & { logo: (
+    { __typename?: 'Asset' }
+    & Pick<Asset, 'url'>
+  ), buttonsCollection: (
+    { __typename?: 'NavbarButtonsCollection' }
+    & { items: Array<(
+      { __typename?: 'NavbarButton' }
+      & Pick<NavbarButton, 'isBrandColorBackground'>
+      & { texturlPair: (
+        { __typename?: 'FooterLink' }
+        & TextUrlPairDataFragment
+      ) }
+    )> }
+  ) }
+);
+
 export const IndexAssetDataFragmentDoc = gql`
     fragment IndexAssetData on Asset {
   title
@@ -2478,6 +2743,21 @@ export const ReviewsDataFragmentDoc = gql`
   }
 }
     ${ReviewDataFragmentDoc}`;
+export const NavbarDataFragmentDoc = gql`
+    fragment NavbarData on Navbar {
+  logo {
+    url
+  }
+  buttonsCollection {
+    items {
+      isBrandColorBackground
+      texturlPair {
+        ...TextUrlPairData
+      }
+    }
+  }
+}
+    ${TextUrlPairDataFragmentDoc}`;
 export const IndexDataDocument = gql`
     query IndexData {
   keyValuePairCollection(where: {key_in: ["Product name", "Tagline"]}) {
@@ -2485,13 +2765,16 @@ export const IndexDataDocument = gql`
       ...KeyValuePairData
     }
   }
-  assetCollection(where: {title_in: ["Product logo", "Favicon"]}) {
+  assetCollection(where: {title_in: ["Favicon"]}) {
     items {
       ...IndexAssetData
     }
   }
   pageCollection(where: {id: "Index"}, limit: 1) {
     items {
+      navbar {
+        ...NavbarData
+      }
       contentsCollection {
         items {
           ... on Content {
@@ -2519,6 +2802,7 @@ export const IndexDataDocument = gql`
 }
     ${KeyValuePairDataFragmentDoc}
 ${IndexAssetDataFragmentDoc}
+${NavbarDataFragmentDoc}
 ${ContentDataFragmentDoc}
 ${DemoDataFragmentDoc}
 ${FeaturesDataFragmentDoc}
