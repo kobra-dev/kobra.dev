@@ -56,6 +56,7 @@ export default function Home(props: IndexProps) {
                   image={section.media &&
                     <IconOrImage imageUrl={section.media.image?.url} faIconName={section.media.faIconName}/>}
                   imageOnLeft={section.imageOnLeft ?? undefined}
+                  callToActionButton={section.callToActionButton ?? undefined}
                 />
               ) : section.__typename === "Demo" ? (
                 <Demo
@@ -78,8 +79,7 @@ export default function Home(props: IndexProps) {
                   heading={section.heading}
                   subheading={section.subheading.value}
                   imageSrc={section.image.url ?? ""}
-                  ctaLink={section.ctaLink.value}
-                  ctaText={section.ctaText.value}
+                  callToActionButton={section.mastheadCtaButton}
                   subtext={section.subtext}
                 />
               ) : section.__typename === "Footer" ? (

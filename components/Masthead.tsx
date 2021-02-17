@@ -1,12 +1,12 @@
-import { Box, Button, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import Link from 'next/link';
+import { Box, Flex, Heading, Image, Stack, Text } from "@chakra-ui/react";
+import { TextUrlPairDataFragment } from "../src/generated/queries";
+import CtaButton from "./CtaButton";
 
 interface MastheadProps {
     heading: string,
     subheading: string,
     imageSrc: string,
-    ctaLink: string,
-    ctaText: string,
+    callToActionButton: TextUrlPairDataFragment,
     subtext: string
 }
 
@@ -31,11 +31,7 @@ export default function Masthead(props: MastheadProps) {
                 <Stack spacing={4} align="flex-start">
                     <Heading as="h1" size="3xl" fontWeight="bold" color="brand.500">{props.heading}</Heading>
                     <Heading as="h2" size="xl" color="gray.800">{props.subheading}</Heading>
-                    <Link href={props.ctaLink}>
-                        <Button color="white" bg="brand.500" size="lg">
-                            {props.ctaText}
-                        </Button>
-                    </Link>
+                    <CtaButton {...props.callToActionButton}/>
                     <Text fontSize="sm" color="gray.800">
                         {props.subtext}
                     </Text>

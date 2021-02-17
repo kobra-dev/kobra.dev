@@ -53,6 +53,13 @@ fragment IconOrImageData on IconOrImage {
   faIconName
 }
 
+fragment TextUrlPairData on FooterLink {
+  text
+  url {
+    value
+  }
+}
+
 fragment ContentData on Content {
   heading
   contentDescription: description
@@ -60,6 +67,9 @@ fragment ContentData on Content {
     ...IconOrImageData
   }
   imageOnLeft
+  callToActionButton {
+    ...TextUrlPairData
+  }
 }
 
 fragment DemoData on Demo {
@@ -91,11 +101,8 @@ fragment MastheadData on Masthead {
   image {
     url
   }
-  ctaText {
-    value
-  }
-  ctaLink {
-    value
+  mastheadCtaButton: callToActionButton {
+    ...TextUrlPairData
   }
   subtext
 }
@@ -120,10 +127,7 @@ fragment FooterData on Footer {
   }
   linksCollection(limit: 10) {
     items {
-      text
-      url {
-        value
-      }
+      ...TextUrlPairData
     }
   }
 }
