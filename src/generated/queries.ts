@@ -30,6 +30,8 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  content?: Maybe<Content>;
+  contentCollection?: Maybe<ContentCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
   footer?: Maybe<Footer>;
@@ -46,8 +48,6 @@ export type Query = {
   featuresCollection?: Maybe<FeaturesCollection>;
   demo?: Maybe<Demo>;
   demoCollection?: Maybe<DemoCollection>;
-  content?: Maybe<Content>;
-  contentCollection?: Maybe<ContentCollection>;
   feature?: Maybe<Feature>;
   featureCollection?: Maybe<FeatureCollection>;
   masthead?: Maybe<Masthead>;
@@ -71,6 +71,23 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryContentArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContentCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ContentFilter>;
+  order?: Maybe<Array<Maybe<ContentOrder>>>;
 };
 
 
@@ -207,23 +224,6 @@ export type QueryDemoCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<DemoFilter>;
   order?: Maybe<Array<Maybe<DemoOrder>>>;
-};
-
-
-export type QueryContentArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryContentCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<ContentFilter>;
-  order?: Maybe<Array<Maybe<ContentOrder>>>;
 };
 
 
@@ -619,6 +619,7 @@ export type Content = Entry & {
   heading: Scalars['String'];
   description: Scalars['String'];
   media?: Maybe<IconOrImage>;
+  imageOnLeft?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -643,6 +644,12 @@ export type ContentDescriptionArgs = {
 /** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
 export type ContentMediaArgs = {
   preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
+export type ContentImageOnLeftArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
@@ -1441,6 +1448,67 @@ export type AssetCollection = {
   items: Array<Maybe<Asset>>;
 };
 
+export type ContentFilter = {
+  media?: Maybe<CfIconOrImageNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  heading_exists?: Maybe<Scalars['Boolean']>;
+  heading?: Maybe<Scalars['String']>;
+  heading_not?: Maybe<Scalars['String']>;
+  heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heading_contains?: Maybe<Scalars['String']>;
+  heading_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  media_exists?: Maybe<Scalars['Boolean']>;
+  imageOnLeft_exists?: Maybe<Scalars['Boolean']>;
+  imageOnLeft?: Maybe<Scalars['Boolean']>;
+  imageOnLeft_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<ContentFilter>>>;
+  AND?: Maybe<Array<Maybe<ContentFilter>>>;
+};
+
+export type CfIconOrImageNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  id_exists?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  id_not?: Maybe<Scalars['String']>;
+  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains?: Maybe<Scalars['String']>;
+  id_not_contains?: Maybe<Scalars['String']>;
+  image_exists?: Maybe<Scalars['Boolean']>;
+  faIconName_exists?: Maybe<Scalars['Boolean']>;
+  faIconName?: Maybe<Scalars['String']>;
+  faIconName_not?: Maybe<Scalars['String']>;
+  faIconName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  faIconName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  faIconName_contains?: Maybe<Scalars['String']>;
+  faIconName_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<CfIconOrImageNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfIconOrImageNestedFilter>>>;
+};
+
+export enum ContentOrder {
+  HeadingAsc = 'heading_ASC',
+  HeadingDesc = 'heading_DESC',
+  ImageOnLeftAsc = 'imageOnLeft_ASC',
+  ImageOnLeftDesc = 'imageOnLeft_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type PageFilter = {
   sys?: Maybe<SysFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
@@ -1738,62 +1806,6 @@ export enum DemoOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
-export type ContentFilter = {
-  media?: Maybe<CfIconOrImageNestedFilter>;
-  sys?: Maybe<SysFilter>;
-  heading_exists?: Maybe<Scalars['Boolean']>;
-  heading?: Maybe<Scalars['String']>;
-  heading_not?: Maybe<Scalars['String']>;
-  heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  heading_contains?: Maybe<Scalars['String']>;
-  heading_not_contains?: Maybe<Scalars['String']>;
-  description_exists?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  media_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<ContentFilter>>>;
-  AND?: Maybe<Array<Maybe<ContentFilter>>>;
-};
-
-export type CfIconOrImageNestedFilter = {
-  sys?: Maybe<SysFilter>;
-  id_exists?: Maybe<Scalars['Boolean']>;
-  id?: Maybe<Scalars['String']>;
-  id_not?: Maybe<Scalars['String']>;
-  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains?: Maybe<Scalars['String']>;
-  id_not_contains?: Maybe<Scalars['String']>;
-  image_exists?: Maybe<Scalars['Boolean']>;
-  faIconName_exists?: Maybe<Scalars['Boolean']>;
-  faIconName?: Maybe<Scalars['String']>;
-  faIconName_not?: Maybe<Scalars['String']>;
-  faIconName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  faIconName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  faIconName_contains?: Maybe<Scalars['String']>;
-  faIconName_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<CfIconOrImageNestedFilter>>>;
-  AND?: Maybe<Array<Maybe<CfIconOrImageNestedFilter>>>;
-};
-
-export enum ContentOrder {
-  HeadingAsc = 'heading_ASC',
-  HeadingDesc = 'heading_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
 export type FeatureFilter = {
   media?: Maybe<CfIconOrImageNestedFilter>;
   sys?: Maybe<SysFilter>;
@@ -1979,7 +1991,7 @@ export type IconOrImageDataFragment = (
 
 export type ContentDataFragment = (
   { __typename?: 'Content' }
-  & Pick<Content, 'heading'>
+  & Pick<Content, 'heading' | 'imageOnLeft'>
   & { contentDescription: Content['description'] }
   & { media?: Maybe<(
     { __typename?: 'IconOrImage' }
@@ -2091,6 +2103,7 @@ export const ContentDataFragmentDoc = gql`
   media {
     ...IconOrImageData
   }
+  imageOnLeft
 }
     ${IconOrImageDataFragmentDoc}`;
 export const DemoDataFragmentDoc = gql`

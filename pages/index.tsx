@@ -55,6 +55,7 @@ export default function Home(props: IndexProps) {
                   description={section.contentDescription}
                   image={section.media &&
                     <IconOrImage imageUrl={section.media.image?.url} faIconName={section.media.faIconName}/>}
+                  imageOnLeft={section.imageOnLeft ?? undefined}
                 />
               ) : section.__typename === "Demo" ? (
                 <Demo

@@ -3,7 +3,8 @@ import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 interface ContentProps {
     heading: string,
     description: string,
-    image?: React.ReactNode
+    image?: React.ReactNode,
+    imageOnLeft?: boolean
 }
 
 // Content block
@@ -18,13 +19,17 @@ export default function Content(props: ContentProps) {
     </>;
     return (
         <Box px="50px" maxW="1300px">
-            <Flex align="center" justify="center" direction={{base: "column", lg: "row"}}>
+            <Flex align="center" justify="center" direction={{base: "column", lg: (props.imageOnLeft ?? true ? "row" : "row-reverse")}}>
                 {props.image ? (
                     <>
-                        <Box>
+                        <Box flex={1} mb={{base: 8, lg: 0}} maxW={{base: "600px", lg: "initial"}}>
+                            {props.image}
+                        </Box>
+                        {/* Easiest way to add margin in between the elements regardless of direction */}
+                        <Box w={8}/>
+                        <Box flex={1}>
                             {content}
                         </Box>
-                        {props.image}
                     </>
                 ) : content}
             </Flex>

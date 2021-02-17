@@ -59,6 +59,7 @@ fragment ContentData on Content {
   media {
     ...IconOrImageData
   }
+  imageOnLeft
 }
 
 fragment DemoData on Demo {
