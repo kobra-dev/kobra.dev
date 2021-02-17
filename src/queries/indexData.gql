@@ -27,6 +27,9 @@ query IndexData {
           ... on Masthead {
             ...MastheadData
           }
+          ... on Footer {
+            ...FooterData
+          }
         }
       }
     }
@@ -94,4 +97,32 @@ fragment MastheadData on Masthead {
     value
   }
   subtext
+}
+
+fragment FooterData on Footer {
+  organizationName {
+    value
+  }
+  organizationIcon {
+    url
+  }
+  iconsCollection(limit: 10) {
+    items {
+      url {
+        value
+      }
+      icon {
+        name
+        collection
+      }
+    }
+  }
+  linksCollection(limit: 10) {
+    items {
+      text
+      url {
+        value
+      }
+    }
+  }
 }

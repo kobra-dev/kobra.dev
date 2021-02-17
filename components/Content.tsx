@@ -18,7 +18,7 @@ export default function Content(props: ContentProps) {
     </>;
     return (
         <Box px="50px" maxW="1300px">
-            <Flex align="center" justify="center">
+            <Flex align="center" justify="center" direction={{base: "column", lg: "row"}}>
                 {props.image ? (
                     <>
                         <Box>

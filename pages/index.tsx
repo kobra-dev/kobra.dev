@@ -5,17 +5,20 @@ import Reviews from "../components/Reviews";
 import Masthead from "../components/Masthead";
 import { GetStaticProps } from "next";
 import { initializeApollo } from "../src/apolloClient";
-import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment } from "../src/generated/queries";
+import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment, FooterDataFragment } from "../src/generated/queries";
 import Features from "../components/Features";
 import { Box, Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
 import { Fragment } from "react";
 import IconOrImage from "../components/IconOrImage";
+import Footer from "../components/Footer";
+import { FACollection } from "../components/FontAwesomeIcon";
 
 const SECTION_BACKGROUNDS = {
   white: [
     "Content",
-    "Features"
+    "Features",
+    "Footer"
   ],
   brand: [
     "Masthead",
@@ -38,7 +41,8 @@ export default function Home(props: IndexProps) {
         <NavBar logoUrl={props.logoUrl} />
         <Stack spacing={8} align="center">
           {props.contents.map((section, index, array) => (
-            <Fragment key={section.__typename + section.heading}>
+            // I know it is a bad idea to use an index as the key but this list won't ever change so it should still work
+            <Fragment key={section.__typename ?? "" + index}>
               {index !== 0 &&
                 Object.values(SECTION_BACKGROUNDS)
                   .filter((arr) => arr.includes(section.__typename ?? ""))[0]
@@ -77,6 +81,20 @@ export default function Home(props: IndexProps) {
                   ctaText={section.ctaText.value}
                   subtext={section.subtext}
                 />
+              ) : section.__typename === "Footer" ? (
+                <Footer
+                  organizationName={section.organizationName.value}
+                  iconUrl={section.organizationIcon.url ?? ""}
+                  icons={section.iconsCollection.items.map(icon => ({
+                    faCollection: (icon.icon.collection as FACollection) ?? undefined,
+                    faName: icon.icon.name,
+                    url: icon.url.value
+                  }))}
+                  links={section.linksCollection.items.map(link => ({
+                    text: link.text,
+                    url: link.url.value
+                  }))}
+                />
               ) : undefined }
             </Fragment>
           ))}
@@ -104,6 +122,9 @@ interface IndexProps {
   ) | (
     { __typename?: 'Masthead' }
     & MastheadDataFragment
+  ) | (
+    { __typename?: 'Footer' }
+    & FooterDataFragment
   )>
 }
 

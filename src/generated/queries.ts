@@ -30,10 +30,18 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  iconOrImage?: Maybe<IconOrImage>;
-  iconOrImageCollection?: Maybe<IconOrImageCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
+  footer?: Maybe<Footer>;
+  footerCollection?: Maybe<FooterCollection>;
+  account?: Maybe<Account>;
+  accountCollection?: Maybe<AccountCollection>;
+  fontAwesomeIcon?: Maybe<FontAwesomeIcon>;
+  fontAwesomeIconCollection?: Maybe<FontAwesomeIconCollection>;
+  footerLink?: Maybe<FooterLink>;
+  footerLinkCollection?: Maybe<FooterLinkCollection>;
+  iconOrImage?: Maybe<IconOrImage>;
+  iconOrImageCollection?: Maybe<IconOrImageCollection>;
   features?: Maybe<Features>;
   featuresCollection?: Maybe<FeaturesCollection>;
   demo?: Maybe<Demo>;
@@ -66,23 +74,6 @@ export type QueryAssetCollectionArgs = {
 };
 
 
-export type QueryIconOrImageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryIconOrImageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<IconOrImageFilter>;
-  order?: Maybe<Array<Maybe<IconOrImageOrder>>>;
-};
-
-
 export type QueryPageArgs = {
   id: Scalars['String'];
   preview?: Maybe<Scalars['Boolean']>;
@@ -97,6 +88,91 @@ export type QueryPageCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<PageFilter>;
   order?: Maybe<Array<Maybe<PageOrder>>>;
+};
+
+
+export type QueryFooterArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryFooterCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<FooterFilter>;
+  order?: Maybe<Array<Maybe<FooterOrder>>>;
+};
+
+
+export type QueryAccountArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryAccountCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<AccountFilter>;
+  order?: Maybe<Array<Maybe<AccountOrder>>>;
+};
+
+
+export type QueryFontAwesomeIconArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryFontAwesomeIconCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<FontAwesomeIconFilter>;
+  order?: Maybe<Array<Maybe<FontAwesomeIconOrder>>>;
+};
+
+
+export type QueryFooterLinkArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryFooterLinkCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<FooterLinkFilter>;
+  order?: Maybe<Array<Maybe<FooterLinkOrder>>>;
+};
+
+
+export type QueryIconOrImageArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryIconOrImageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<IconOrImageFilter>;
+  order?: Maybe<Array<Maybe<IconOrImageOrder>>>;
 };
 
 
@@ -339,12 +415,21 @@ export enum ImageFormat {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  footerCollection?: Maybe<FooterCollection>;
   iconOrImageCollection?: Maybe<IconOrImageCollection>;
   mastheadCollection?: Maybe<MastheadCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsFooterCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -379,12 +464,208 @@ export type Entry = {
   sys: Sys;
 };
 
-export type IconOrImageCollection = {
-  __typename?: 'IconOrImageCollection';
+export type FooterCollection = {
+  __typename?: 'FooterCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<IconOrImage>;
+  items: Array<Footer>;
+};
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type Footer = Entry & {
+  __typename?: 'Footer';
+  sys: Sys;
+  linkedFrom?: Maybe<FooterLinkingCollections>;
+  id: Scalars['String'];
+  organizationName: KeyValuePair;
+  organizationIcon: Asset;
+  iconsCollection: FooterIconsCollection;
+  linksCollection: FooterLinksCollection;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterIdArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterOrganizationNameArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterOrganizationIconArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterIconsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterLinksCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FooterLinkingCollections = {
+  __typename?: 'FooterLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
+};
+
+
+export type FooterLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FooterLinkingCollectionsPageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type PageCollection = {
+  __typename?: 'PageCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Page>;
+};
+
+/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
+export type Page = Entry & {
+  __typename?: 'Page';
+  sys: Sys;
+  linkedFrom?: Maybe<PageLinkingCollections>;
+  id: Scalars['String'];
+  contentsCollection: PageContentsCollection;
+};
+
+
+/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
+export type PageLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
+export type PageIdArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
+export type PageContentsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type PageLinkingCollections = {
+  __typename?: 'PageLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type PageContentsCollection = {
+  __typename?: 'PageContentsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<PageContentsItem>;
+};
+
+export type PageContentsItem = Content | Demo | Features | Footer | Masthead;
+
+/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
+export type Content = Entry & {
+  __typename?: 'Content';
+  sys: Sys;
+  linkedFrom?: Maybe<ContentLinkingCollections>;
+  heading: Scalars['String'];
+  description: Scalars['String'];
+  media?: Maybe<IconOrImage>;
+};
+
+
+/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
+export type ContentLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
+export type ContentHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
+export type ContentDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
+export type ContentMediaArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ContentLinkingCollections = {
+  __typename?: 'ContentLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
+};
+
+
+export type ContentLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentLinkingCollectionsPageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
 };
 
 /** Either a Font Awesome icon or an image [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/iconOrImage) */
@@ -461,49 +742,124 @@ export type ContentCollection = {
   items: Array<Content>;
 };
 
-/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
-export type Content = Entry & {
-  __typename?: 'Content';
+export type FeatureCollection = {
+  __typename?: 'FeatureCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Feature>;
+};
+
+/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
+export type Feature = Entry & {
+  __typename?: 'Feature';
   sys: Sys;
-  linkedFrom?: Maybe<ContentLinkingCollections>;
+  linkedFrom?: Maybe<FeatureLinkingCollections>;
   heading: Scalars['String'];
-  description: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
   media?: Maybe<IconOrImage>;
 };
 
 
-/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
-export type ContentLinkedFromArgs = {
+/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
+export type FeatureLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
-export type ContentHeadingArgs = {
+/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
+export type FeatureHeadingArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
-export type ContentDescriptionArgs = {
+/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
+export type FeatureDescriptionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
-export type ContentMediaArgs = {
+/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
+export type FeatureMediaArgs = {
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-export type ContentLinkingCollections = {
-  __typename?: 'ContentLinkingCollections';
+export type FeatureLinkingCollections = {
+  __typename?: 'FeatureLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  featuresCollection?: Maybe<FeaturesCollection>;
+};
+
+
+export type FeatureLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FeatureLinkingCollectionsFeaturesCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FeaturesCollection = {
+  __typename?: 'FeaturesCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Features>;
+};
+
+/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
+export type Features = Entry & {
+  __typename?: 'Features';
+  sys: Sys;
+  linkedFrom?: Maybe<FeaturesLinkingCollections>;
+  heading: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
+  featuresCollection?: Maybe<FeaturesFeaturesCollection>;
+};
+
+
+/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
+export type FeaturesLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
+export type FeaturesHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
+export type FeaturesDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
+export type FeaturesFeaturesCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FeaturesLinkingCollections = {
+  __typename?: 'FeaturesLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   pageCollection?: Maybe<PageCollection>;
 };
 
 
-export type ContentLinkingCollectionsEntryCollectionArgs = {
+export type FeaturesLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -511,73 +867,20 @@ export type ContentLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type ContentLinkingCollectionsPageCollectionArgs = {
+export type FeaturesLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-export type PageCollection = {
-  __typename?: 'PageCollection';
+export type FeaturesFeaturesCollection = {
+  __typename?: 'FeaturesFeaturesCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Page>;
+  items: Array<Feature>;
 };
-
-/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
-export type Page = Entry & {
-  __typename?: 'Page';
-  sys: Sys;
-  linkedFrom?: Maybe<PageLinkingCollections>;
-  id: Scalars['String'];
-  contentsCollection: PageContentsCollection;
-};
-
-
-/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
-export type PageLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
-export type PageIdArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Content to show in a landing page [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/page) */
-export type PageContentsCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type PageLinkingCollections = {
-  __typename?: 'PageLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type PageLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type PageContentsCollection = {
-  __typename?: 'PageContentsCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<PageContentsItem>;
-};
-
-export type PageContentsItem = Content | Demo | Features | Masthead;
 
 /** A demo section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/demo) */
 export type Demo = Entry & {
@@ -659,12 +962,39 @@ export type KeyValuePairValueArgs = {
 export type KeyValuePairLinkingCollections = {
   __typename?: 'KeyValuePairLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  footerCollection?: Maybe<FooterCollection>;
+  accountCollection?: Maybe<AccountCollection>;
+  footerLinkCollection?: Maybe<FooterLinkCollection>;
   demoCollection?: Maybe<DemoCollection>;
   mastheadCollection?: Maybe<MastheadCollection>;
 };
 
 
 export type KeyValuePairLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type KeyValuePairLinkingCollectionsFooterCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type KeyValuePairLinkingCollectionsAccountCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type KeyValuePairLinkingCollectionsFooterLinkCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -681,6 +1011,179 @@ export type KeyValuePairLinkingCollectionsDemoCollectionArgs = {
 
 
 export type KeyValuePairLinkingCollectionsMastheadCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type AccountCollection = {
+  __typename?: 'AccountCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Account>;
+};
+
+/** An account (e.g. GitHub, Twitter, etc) [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/account) */
+export type Account = Entry & {
+  __typename?: 'Account';
+  sys: Sys;
+  linkedFrom?: Maybe<AccountLinkingCollections>;
+  name: Scalars['String'];
+  url: KeyValuePair;
+  icon: FontAwesomeIcon;
+};
+
+
+/** An account (e.g. GitHub, Twitter, etc) [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/account) */
+export type AccountLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** An account (e.g. GitHub, Twitter, etc) [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/account) */
+export type AccountNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** An account (e.g. GitHub, Twitter, etc) [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/account) */
+export type AccountUrlArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** An account (e.g. GitHub, Twitter, etc) [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/account) */
+export type AccountIconArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type AccountLinkingCollections = {
+  __typename?: 'AccountLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  footerCollection?: Maybe<FooterCollection>;
+};
+
+
+export type AccountLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AccountLinkingCollectionsFooterCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/fontAwesomeIcon) */
+export type FontAwesomeIcon = Entry & {
+  __typename?: 'FontAwesomeIcon';
+  sys: Sys;
+  linkedFrom?: Maybe<FontAwesomeIconLinkingCollections>;
+  name: Scalars['String'];
+  collection?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/fontAwesomeIcon) */
+export type FontAwesomeIconLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/fontAwesomeIcon) */
+export type FontAwesomeIconNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/fontAwesomeIcon) */
+export type FontAwesomeIconCollectionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FontAwesomeIconLinkingCollections = {
+  __typename?: 'FontAwesomeIconLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  accountCollection?: Maybe<AccountCollection>;
+};
+
+
+export type FontAwesomeIconLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FontAwesomeIconLinkingCollectionsAccountCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FooterLinkCollection = {
+  __typename?: 'FooterLinkCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<FooterLink>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footerLink) */
+export type FooterLink = Entry & {
+  __typename?: 'FooterLink';
+  sys: Sys;
+  linkedFrom?: Maybe<FooterLinkLinkingCollections>;
+  text: Scalars['String'];
+  url: KeyValuePair;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footerLink) */
+export type FooterLinkLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footerLink) */
+export type FooterLinkTextArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footerLink) */
+export type FooterLinkUrlArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type FooterLinkLinkingCollections = {
+  __typename?: 'FooterLinkLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  footerCollection?: Maybe<FooterCollection>;
+};
+
+
+export type FooterLinkLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type FooterLinkLinkingCollectionsFooterCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -784,144 +1287,28 @@ export type MastheadLinkingCollectionsPageCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
-export type Features = Entry & {
-  __typename?: 'Features';
-  sys: Sys;
-  linkedFrom?: Maybe<FeaturesLinkingCollections>;
-  heading: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  featuresCollection?: Maybe<FeaturesFeaturesCollection>;
-};
-
-
-/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
-export type FeaturesLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
-export type FeaturesHeadingArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
-export type FeaturesDescriptionArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/features) */
-export type FeaturesFeaturesCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type FeaturesLinkingCollections = {
-  __typename?: 'FeaturesLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-  pageCollection?: Maybe<PageCollection>;
-};
-
-
-export type FeaturesLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type FeaturesLinkingCollectionsPageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type FeaturesFeaturesCollection = {
-  __typename?: 'FeaturesFeaturesCollection';
+export type FooterIconsCollection = {
+  __typename?: 'FooterIconsCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Feature>;
+  items: Array<Account>;
 };
 
-/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
-export type Feature = Entry & {
-  __typename?: 'Feature';
-  sys: Sys;
-  linkedFrom?: Maybe<FeatureLinkingCollections>;
-  heading: Scalars['String'];
-  description?: Maybe<Scalars['String']>;
-  media?: Maybe<IconOrImage>;
-};
-
-
-/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
-export type FeatureLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
-export type FeatureHeadingArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
-export type FeatureDescriptionArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** A feature to display in a features section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/feature) */
-export type FeatureMediaArgs = {
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type FeatureLinkingCollections = {
-  __typename?: 'FeatureLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-  featuresCollection?: Maybe<FeaturesCollection>;
-};
-
-
-export type FeatureLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type FeatureLinkingCollectionsFeaturesCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type FeaturesCollection = {
-  __typename?: 'FeaturesCollection';
+export type FooterLinksCollection = {
+  __typename?: 'FooterLinksCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Features>;
+  items: Array<FooterLink>;
 };
 
-export type FeatureCollection = {
-  __typename?: 'FeatureCollection';
+export type IconOrImageCollection = {
+  __typename?: 'IconOrImageCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Feature>;
+  items: Array<IconOrImage>;
 };
 
 export type AssetFilter = {
@@ -1054,6 +1441,205 @@ export type AssetCollection = {
   items: Array<Maybe<Asset>>;
 };
 
+export type PageFilter = {
+  sys?: Maybe<SysFilter>;
+  id_exists?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  id_not?: Maybe<Scalars['String']>;
+  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains?: Maybe<Scalars['String']>;
+  id_not_contains?: Maybe<Scalars['String']>;
+  contentsCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<PageFilter>>>;
+  AND?: Maybe<Array<Maybe<PageFilter>>>;
+};
+
+export enum PageOrder {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type FooterFilter = {
+  organizationName?: Maybe<CfKeyValuePairNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  id_exists?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  id_not?: Maybe<Scalars['String']>;
+  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains?: Maybe<Scalars['String']>;
+  id_not_contains?: Maybe<Scalars['String']>;
+  organizationName_exists?: Maybe<Scalars['Boolean']>;
+  organizationIcon_exists?: Maybe<Scalars['Boolean']>;
+  iconsCollection_exists?: Maybe<Scalars['Boolean']>;
+  linksCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<FooterFilter>>>;
+  AND?: Maybe<Array<Maybe<FooterFilter>>>;
+};
+
+export type CfKeyValuePairNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  key_exists?: Maybe<Scalars['Boolean']>;
+  key?: Maybe<Scalars['String']>;
+  key_not?: Maybe<Scalars['String']>;
+  key_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  key_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  key_contains?: Maybe<Scalars['String']>;
+  key_not_contains?: Maybe<Scalars['String']>;
+  value_exists?: Maybe<Scalars['Boolean']>;
+  value?: Maybe<Scalars['String']>;
+  value_not?: Maybe<Scalars['String']>;
+  value_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  value_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  value_contains?: Maybe<Scalars['String']>;
+  value_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<CfKeyValuePairNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfKeyValuePairNestedFilter>>>;
+};
+
+export enum FooterOrder {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type AccountFilter = {
+  url?: Maybe<CfKeyValuePairNestedFilter>;
+  icon?: Maybe<CfFontAwesomeIconNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  url_exists?: Maybe<Scalars['Boolean']>;
+  icon_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<AccountFilter>>>;
+  AND?: Maybe<Array<Maybe<AccountFilter>>>;
+};
+
+export type CfFontAwesomeIconNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  collection_exists?: Maybe<Scalars['Boolean']>;
+  collection?: Maybe<Scalars['String']>;
+  collection_not?: Maybe<Scalars['String']>;
+  collection_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  collection_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  collection_contains?: Maybe<Scalars['String']>;
+  collection_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<CfFontAwesomeIconNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfFontAwesomeIconNestedFilter>>>;
+};
+
+export enum AccountOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type FontAwesomeIconFilter = {
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  collection_exists?: Maybe<Scalars['Boolean']>;
+  collection?: Maybe<Scalars['String']>;
+  collection_not?: Maybe<Scalars['String']>;
+  collection_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  collection_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  collection_contains?: Maybe<Scalars['String']>;
+  collection_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<FontAwesomeIconFilter>>>;
+  AND?: Maybe<Array<Maybe<FontAwesomeIconFilter>>>;
+};
+
+export enum FontAwesomeIconOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  CollectionAsc = 'collection_ASC',
+  CollectionDesc = 'collection_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type FontAwesomeIconCollection = {
+  __typename?: 'FontAwesomeIconCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<FontAwesomeIcon>;
+};
+
+export type FooterLinkFilter = {
+  url?: Maybe<CfKeyValuePairNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  text_exists?: Maybe<Scalars['Boolean']>;
+  text?: Maybe<Scalars['String']>;
+  text_not?: Maybe<Scalars['String']>;
+  text_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  text_contains?: Maybe<Scalars['String']>;
+  text_not_contains?: Maybe<Scalars['String']>;
+  url_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<FooterLinkFilter>>>;
+  AND?: Maybe<Array<Maybe<FooterLinkFilter>>>;
+};
+
+export enum FooterLinkOrder {
+  TextAsc = 'text_ASC',
+  TextDesc = 'text_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type IconOrImageFilter = {
   sys?: Maybe<SysFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
@@ -1080,33 +1666,6 @@ export enum IconOrImageOrder {
   IdDesc = 'id_DESC',
   FaIconNameAsc = 'faIconName_ASC',
   FaIconNameDesc = 'faIconName_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type PageFilter = {
-  sys?: Maybe<SysFilter>;
-  id_exists?: Maybe<Scalars['Boolean']>;
-  id?: Maybe<Scalars['String']>;
-  id_not?: Maybe<Scalars['String']>;
-  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains?: Maybe<Scalars['String']>;
-  id_not_contains?: Maybe<Scalars['String']>;
-  contentsCollection_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<PageFilter>>>;
-  AND?: Maybe<Array<Maybe<PageFilter>>>;
-};
-
-export enum PageOrder {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -1164,26 +1723,6 @@ export type DemoFilter = {
   url_exists?: Maybe<Scalars['Boolean']>;
   OR?: Maybe<Array<Maybe<DemoFilter>>>;
   AND?: Maybe<Array<Maybe<DemoFilter>>>;
-};
-
-export type CfKeyValuePairNestedFilter = {
-  sys?: Maybe<SysFilter>;
-  key_exists?: Maybe<Scalars['Boolean']>;
-  key?: Maybe<Scalars['String']>;
-  key_not?: Maybe<Scalars['String']>;
-  key_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  key_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  key_contains?: Maybe<Scalars['String']>;
-  key_not_contains?: Maybe<Scalars['String']>;
-  value_exists?: Maybe<Scalars['Boolean']>;
-  value?: Maybe<Scalars['String']>;
-  value_not?: Maybe<Scalars['String']>;
-  value_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  value_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  value_contains?: Maybe<Scalars['String']>;
-  value_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<CfKeyValuePairNestedFilter>>>;
-  AND?: Maybe<Array<Maybe<CfKeyValuePairNestedFilter>>>;
 };
 
 export enum DemoOrder {
@@ -1408,6 +1947,9 @@ export type IndexDataQuery = (
           { __typename?: 'Features' }
           & FeaturesDataFragment
         ) | (
+          { __typename?: 'Footer' }
+          & FooterDataFragment
+        ) | (
           { __typename?: 'Masthead' }
           & MastheadDataFragment
         )> }
@@ -1489,6 +2031,39 @@ export type MastheadDataFragment = (
   ) }
 );
 
+export type FooterDataFragment = (
+  { __typename?: 'Footer' }
+  & { organizationName: (
+    { __typename?: 'KeyValuePair' }
+    & Pick<KeyValuePair, 'value'>
+  ), organizationIcon: (
+    { __typename?: 'Asset' }
+    & Pick<Asset, 'url'>
+  ), iconsCollection: (
+    { __typename?: 'FooterIconsCollection' }
+    & { items: Array<(
+      { __typename?: 'Account' }
+      & { url: (
+        { __typename?: 'KeyValuePair' }
+        & Pick<KeyValuePair, 'value'>
+      ), icon: (
+        { __typename?: 'FontAwesomeIcon' }
+        & Pick<FontAwesomeIcon, 'name' | 'collection'>
+      ) }
+    )> }
+  ), linksCollection: (
+    { __typename?: 'FooterLinksCollection' }
+    & { items: Array<(
+      { __typename?: 'FooterLink' }
+      & Pick<FooterLink, 'text'>
+      & { url: (
+        { __typename?: 'KeyValuePair' }
+        & Pick<KeyValuePair, 'value'>
+      ) }
+    )> }
+  ) }
+);
+
 export const IndexAssetDataFragmentDoc = gql`
     fragment IndexAssetData on Asset {
   title
@@ -1559,6 +2134,35 @@ export const MastheadDataFragmentDoc = gql`
   subtext
 }
     `;
+export const FooterDataFragmentDoc = gql`
+    fragment FooterData on Footer {
+  organizationName {
+    value
+  }
+  organizationIcon {
+    url
+  }
+  iconsCollection(limit: 10) {
+    items {
+      url {
+        value
+      }
+      icon {
+        name
+        collection
+      }
+    }
+  }
+  linksCollection(limit: 10) {
+    items {
+      text
+      url {
+        value
+      }
+    }
+  }
+}
+    `;
 export const IndexDataDocument = gql`
     query IndexData {
   keyValuePairCollection(where: {key_in: ["Product name", "Tagline"]}) {
@@ -1587,6 +2191,9 @@ export const IndexDataDocument = gql`
           ... on Masthead {
             ...MastheadData
           }
+          ... on Footer {
+            ...FooterData
+          }
         }
       }
     }
@@ -1597,7 +2204,8 @@ ${IndexAssetDataFragmentDoc}
 ${ContentDataFragmentDoc}
 ${DemoDataFragmentDoc}
 ${FeaturesDataFragmentDoc}
-${MastheadDataFragmentDoc}`;
+${MastheadDataFragmentDoc}
+${FooterDataFragmentDoc}`;
 
 /**
  * __useIndexDataQuery__
