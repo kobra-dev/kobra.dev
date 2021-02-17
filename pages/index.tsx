@@ -5,7 +5,7 @@ import Reviews from "../components/Reviews";
 import Masthead from "../components/Masthead";
 import { GetStaticProps } from "next";
 import { initializeApollo } from "../src/apolloClient";
-import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment, FooterDataFragment } from "../src/generated/queries";
+import { IndexDataDocument, IndexDataQuery, KeyValuePairDataFragment, Maybe, IndexAssetDataFragment, ContentDataFragment, DemoDataFragment, FeaturesDataFragment, MastheadDataFragment, FooterDataFragment, ReviewsDataFragment } from "../src/generated/queries";
 import Features from "../components/Features";
 import { Box, Divider, Stack } from "@chakra-ui/react";
 import Content from "../components/Content";
@@ -18,7 +18,8 @@ const SECTION_BACKGROUNDS = {
   white: [
     "Content",
     "Features",
-    "Footer"
+    "Footer",
+    "Reviews"
   ],
   brand: [
     "Masthead",
@@ -96,6 +97,8 @@ export default function Home(props: IndexProps) {
                     url: link.url.value
                   }))}
                 />
+              ) : section.__typename === "Reviews" ? (
+                <Reviews {...section}/>
               ) : undefined }
             </Fragment>
           ))}
@@ -126,6 +129,9 @@ interface IndexProps {
   ) | (
     { __typename?: 'Footer' }
     & FooterDataFragment
+  ) | (
+    { __typename?: 'Reviews' }
+    & ReviewsDataFragment
   )>
 }
 

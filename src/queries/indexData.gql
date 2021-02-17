@@ -30,6 +30,9 @@ query IndexData {
           ... on Footer {
             ...FooterData
           }
+          ... on Reviews {
+            ...ReviewsData
+          }
         }
       }
     }
@@ -128,6 +131,20 @@ fragment FooterData on Footer {
   linksCollection(limit: 10) {
     items {
       ...TextUrlPairData
+    }
+  }
+}
+
+fragment ReviewData on Review {
+  reviewText
+  person
+}
+
+fragment ReviewsData on Reviews {
+  heading
+  reviewsCollection {
+    items {
+      ...ReviewData
     }
   }
 }

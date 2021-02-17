@@ -30,14 +30,18 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  page?: Maybe<Page>;
+  pageCollection?: Maybe<PageCollection>;
+  reviews?: Maybe<Reviews>;
+  reviewsCollection?: Maybe<ReviewsCollection>;
+  review?: Maybe<Review>;
+  reviewCollection?: Maybe<ReviewCollection>;
   masthead?: Maybe<Masthead>;
   mastheadCollection?: Maybe<MastheadCollection>;
   content?: Maybe<Content>;
   contentCollection?: Maybe<ContentCollection>;
   footerLink?: Maybe<FooterLink>;
   footerLinkCollection?: Maybe<FooterLinkCollection>;
-  page?: Maybe<Page>;
-  pageCollection?: Maybe<PageCollection>;
   footer?: Maybe<Footer>;
   footerCollection?: Maybe<FooterCollection>;
   account?: Maybe<Account>;
@@ -71,6 +75,57 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryPageArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryPageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<PageFilter>;
+  order?: Maybe<Array<Maybe<PageOrder>>>;
+};
+
+
+export type QueryReviewsArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryReviewsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ReviewsFilter>;
+  order?: Maybe<Array<Maybe<ReviewsOrder>>>;
+};
+
+
+export type QueryReviewArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryReviewCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ReviewFilter>;
+  order?: Maybe<Array<Maybe<ReviewOrder>>>;
 };
 
 
@@ -122,23 +177,6 @@ export type QueryFooterLinkCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<FooterLinkFilter>;
   order?: Maybe<Array<Maybe<FooterLinkOrder>>>;
-};
-
-
-export type QueryPageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryPageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<PageFilter>;
-  order?: Maybe<Array<Maybe<PageOrder>>>;
 };
 
 
@@ -604,7 +642,7 @@ export type PageContentsCollection = {
   items: Array<PageContentsItem>;
 };
 
-export type PageContentsItem = Content | Demo | Features | Footer | Masthead;
+export type PageContentsItem = Content | Demo | Features | Footer | Masthead | Reviews;
 
 /** A content section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/content) */
 export type Content = Entry & {
@@ -1328,6 +1366,123 @@ export type FooterLinksCollection = {
   items: Array<FooterLink>;
 };
 
+/** A reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/reviews) */
+export type Reviews = Entry & {
+  __typename?: 'Reviews';
+  sys: Sys;
+  linkedFrom?: Maybe<ReviewsLinkingCollections>;
+  heading: Scalars['String'];
+  reviewsCollection: ReviewsReviewsCollection;
+};
+
+
+/** A reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/reviews) */
+export type ReviewsLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/reviews) */
+export type ReviewsHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/reviews) */
+export type ReviewsReviewsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ReviewsLinkingCollections = {
+  __typename?: 'ReviewsLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
+};
+
+
+export type ReviewsLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ReviewsLinkingCollectionsPageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ReviewsReviewsCollection = {
+  __typename?: 'ReviewsReviewsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Review>;
+};
+
+/** A review to display in a reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/review) */
+export type Review = Entry & {
+  __typename?: 'Review';
+  sys: Sys;
+  linkedFrom?: Maybe<ReviewLinkingCollections>;
+  reviewText: Scalars['String'];
+  person: Scalars['String'];
+};
+
+
+/** A review to display in a reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/review) */
+export type ReviewLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A review to display in a reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/review) */
+export type ReviewReviewTextArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A review to display in a reviews section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/review) */
+export type ReviewPersonArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ReviewLinkingCollections = {
+  __typename?: 'ReviewLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  reviewsCollection?: Maybe<ReviewsCollection>;
+};
+
+
+export type ReviewLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ReviewLinkingCollectionsReviewsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ReviewsCollection = {
+  __typename?: 'ReviewsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Reviews>;
+};
+
 export type IconOrImageCollection = {
   __typename?: 'IconOrImageCollection';
   total: Scalars['Int'];
@@ -1464,6 +1619,101 @@ export type AssetCollection = {
   skip: Scalars['Int'];
   limit: Scalars['Int'];
   items: Array<Maybe<Asset>>;
+};
+
+export type PageFilter = {
+  sys?: Maybe<SysFilter>;
+  id_exists?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  id_not?: Maybe<Scalars['String']>;
+  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains?: Maybe<Scalars['String']>;
+  id_not_contains?: Maybe<Scalars['String']>;
+  contentsCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<PageFilter>>>;
+  AND?: Maybe<Array<Maybe<PageFilter>>>;
+};
+
+export enum PageOrder {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ReviewsFilter = {
+  sys?: Maybe<SysFilter>;
+  heading_exists?: Maybe<Scalars['Boolean']>;
+  heading?: Maybe<Scalars['String']>;
+  heading_not?: Maybe<Scalars['String']>;
+  heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heading_contains?: Maybe<Scalars['String']>;
+  heading_not_contains?: Maybe<Scalars['String']>;
+  reviewsCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<ReviewsFilter>>>;
+  AND?: Maybe<Array<Maybe<ReviewsFilter>>>;
+};
+
+export enum ReviewsOrder {
+  HeadingAsc = 'heading_ASC',
+  HeadingDesc = 'heading_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ReviewFilter = {
+  sys?: Maybe<SysFilter>;
+  reviewText_exists?: Maybe<Scalars['Boolean']>;
+  reviewText?: Maybe<Scalars['String']>;
+  reviewText_not?: Maybe<Scalars['String']>;
+  reviewText_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  reviewText_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  reviewText_contains?: Maybe<Scalars['String']>;
+  reviewText_not_contains?: Maybe<Scalars['String']>;
+  person_exists?: Maybe<Scalars['Boolean']>;
+  person?: Maybe<Scalars['String']>;
+  person_not?: Maybe<Scalars['String']>;
+  person_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  person_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  person_contains?: Maybe<Scalars['String']>;
+  person_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<ReviewFilter>>>;
+  AND?: Maybe<Array<Maybe<ReviewFilter>>>;
+};
+
+export enum ReviewOrder {
+  PersonAsc = 'person_ASC',
+  PersonDesc = 'person_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ReviewCollection = {
+  __typename?: 'ReviewCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Review>;
 };
 
 export type MastheadFilter = {
@@ -1621,33 +1871,6 @@ export type FooterLinkFilter = {
 export enum FooterLinkOrder {
   TextAsc = 'text_ASC',
   TextDesc = 'text_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type PageFilter = {
-  sys?: Maybe<SysFilter>;
-  id_exists?: Maybe<Scalars['Boolean']>;
-  id?: Maybe<Scalars['String']>;
-  id_not?: Maybe<Scalars['String']>;
-  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains?: Maybe<Scalars['String']>;
-  id_not_contains?: Maybe<Scalars['String']>;
-  contentsCollection_exists?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<PageFilter>>>;
-  AND?: Maybe<Array<Maybe<PageFilter>>>;
-};
-
-export enum PageOrder {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -1996,6 +2219,9 @@ export type IndexDataQuery = (
         ) | (
           { __typename?: 'Masthead' }
           & MastheadDataFragment
+        ) | (
+          { __typename?: 'Reviews' }
+          & ReviewsDataFragment
         )> }
       ) }
     )> }
@@ -2113,6 +2339,23 @@ export type FooterDataFragment = (
   ) }
 );
 
+export type ReviewDataFragment = (
+  { __typename?: 'Review' }
+  & Pick<Review, 'reviewText' | 'person'>
+);
+
+export type ReviewsDataFragment = (
+  { __typename?: 'Reviews' }
+  & Pick<Reviews, 'heading'>
+  & { reviewsCollection: (
+    { __typename?: 'ReviewsReviewsCollection' }
+    & { items: Array<(
+      { __typename?: 'Review' }
+      & ReviewDataFragment
+    )> }
+  ) }
+);
+
 export const IndexAssetDataFragmentDoc = gql`
     fragment IndexAssetData on Asset {
   title
@@ -2219,6 +2462,22 @@ export const FooterDataFragmentDoc = gql`
   }
 }
     ${TextUrlPairDataFragmentDoc}`;
+export const ReviewDataFragmentDoc = gql`
+    fragment ReviewData on Review {
+  reviewText
+  person
+}
+    `;
+export const ReviewsDataFragmentDoc = gql`
+    fragment ReviewsData on Reviews {
+  heading
+  reviewsCollection {
+    items {
+      ...ReviewData
+    }
+  }
+}
+    ${ReviewDataFragmentDoc}`;
 export const IndexDataDocument = gql`
     query IndexData {
   keyValuePairCollection(where: {key_in: ["Product name", "Tagline"]}) {
@@ -2250,6 +2509,9 @@ export const IndexDataDocument = gql`
           ... on Footer {
             ...FooterData
           }
+          ... on Reviews {
+            ...ReviewsData
+          }
         }
       }
     }
@@ -2261,7 +2523,8 @@ ${ContentDataFragmentDoc}
 ${DemoDataFragmentDoc}
 ${FeaturesDataFragmentDoc}
 ${MastheadDataFragmentDoc}
-${FooterDataFragmentDoc}`;
+${FooterDataFragmentDoc}
+${ReviewsDataFragmentDoc}`;
 
 /**
  * __useIndexDataQuery__
