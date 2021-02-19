@@ -1,5 +1,5 @@
 import { Box, Heading } from "@chakra-ui/react";
-import { Image } from "@geist-ui/react";
+import FakeBrowser from "./FakeBrowser";
 
 interface DemoProps {
   heading: string,
@@ -14,16 +14,13 @@ export default function Demo(props: DemoProps) {
       </Heading>
       <br />
       <Box pb={16}>
-        <Image.Browser
-          url={props.url}
-          style={{ width: 1280, maxWidth: "90%" }}
-        >
+        <FakeBrowser url={props.url} w="1280px" maxW="90%">
           <iframe
             src={props.url}
             style={{ width: "100%", height: "75vh" }}
             loading="eager"
           />
-        </Image.Browser>
+        </FakeBrowser>
       </Box>
     </Box>
   );

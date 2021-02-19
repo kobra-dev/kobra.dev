@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "gql-codegen": "dotenv -e .env.contentful-codegen -- cross-var fix-contentful-schema --output graphql.schema.json --token %CONTENTFUL_CONTENT_TOKEN% --management %CONTENTFUL_MANAGEMENT_TOKEN% --space %CONTENTFUL_SPACE_ID% && graphql-codegen --config codegen.yml",
-    "gql-codegen-vercel": "fix-contentful-schema --output graphql.schema.json --token $CONTENTFUL_CONTENT_TOKEN --management $CONTENTFUL_MANAGEMENT_TOKEN --space $CONTENTFUL_SPACE_ID && graphql-codegen --config codegen.yml"
+    "gql-codegen-vercel": "fix-contentful-schema --output graphql.schema.json --token $CONTENTFUL_CONTENT_TOKEN --management $CONTENTFUL_MANAGEMENT_TOKEN --space $CONTENTFUL_SPACE_ID && graphql-codegen --config codegen.yml",
+    "analyze": "cross-env ANALYZE=true next build",
+    "analyze:server": "cross-env BUNDLE_ANALYZE=server next build",
+    "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
     "@apollo/client": "^3.3.10",
@@ -15,19 +18,18 @@
     "@chakra-ui/react": "^1.2.1",
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
-    "@geist-ui/react": "^2.1.0-canary.2",
-    "framer-motion": "^3.2.2-rc.1",
+    "framer-motion": "^3.5.2",
     "graphql": "^15.5.0",
     "next": "10.0.6",
     "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-icons": "^4.1.0"
+    "react-dom": "17.0.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.20.1",
     "@graphql-codegen/typescript": "^1.21.0",
     "@graphql-codegen/typescript-operations": "^1.17.14",
     "@graphql-codegen/typescript-react-apollo": "^2.2.1",
+    "@next/bundle-analyzer": "^10.0.7",
     "@types/node": "^14.14.28",
     "cross-env": "^7.0.3",
     "cross-var": "^1.1.0",
