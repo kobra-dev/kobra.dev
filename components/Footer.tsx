@@ -22,8 +22,8 @@ export default function Footer(props: FooterProps) {
     return (
         <SimpleGrid
             w="100%"
-            // maxW="900px"
-            // minChildWidth="250px"
+            maxW="900px"
+            minChildWidth="250px"
             spacing={16}
             px="50px"
             pb={16}

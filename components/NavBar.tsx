@@ -1,9 +1,17 @@
-import { Box, Button, Flex, Image, Link, Stack } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    Flex,
+    Image,
+    Link,
+    LinkOverlay,
+    Stack
+} from '@chakra-ui/react';
 import { NavbarDataFragment } from '../src/generated/queries';
 
 const NavbarButton = (props: { isBrand: boolean; children: React.ReactNode }) =>
     props.isBrand ? (
-        <Button colorScheme="brand" _hover={{ bg: '#000' }}>
+        <Button colorScheme="brand" _hover={{ bg: '#1ed96c' }}>
             {props.children}
         </Button>
     ) : (
