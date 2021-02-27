@@ -1,12 +1,4 @@
-import {
-    Box,
-    Flex,
-    Image,
-    Link,
-    SimpleGrid,
-    Stack,
-    Text
-} from '@chakra-ui/react';
+import { Flex, Image, Link, SimpleGrid, Stack, Text } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import FontAwesomeIcon, { FACollection } from './FontAwesomeIcon';
 
@@ -36,7 +28,7 @@ export default function Footer(props: FooterProps) {
             px="50px"
             pb={16}
         >
-            <Stack spacing={4}>
+            <Stack spacing={2}>
                 <Flex align="center">
                     <Image src={props.iconUrl} maxW="2em" mr={4} />
                     <Text fontSize="md" color="gray.500">
@@ -58,13 +50,13 @@ export default function Footer(props: FooterProps) {
                     ))}
                 </Stack>
             </Stack>
-            <Box>
+            <Stack>
                 {props.links.map((link, index) => (
                     <Link key={index} as={NextLink} href={link.url}>
                         <a>{link.text}</a>
                     </Link>
                 ))}
-            </Box>
+            </Stack>
         </SimpleGrid>
     );
 }

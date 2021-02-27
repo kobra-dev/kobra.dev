@@ -34,7 +34,7 @@ const SECTION_BACKGROUNDS = {
 
 export default function Home(props: IndexProps) {
     return (
-        <div>
+        <Fragment>
             <Head>
                 <title>
                     {props.productName} | {props.tagline}
@@ -150,7 +150,7 @@ export default function Home(props: IndexProps) {
                     ))}
                 </Stack>
             </main>
-        </div>
+        </Fragment>
     );
 }
 

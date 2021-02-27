@@ -26,13 +26,17 @@ const theme = extendTheme({
             800: '#004e28',
             900: '#001c09'
         }
+    },
+    fonts: {
+        heading: 'Open Sans',
+        body: 'Roboto'
     }
 });
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ChakraProvider theme={theme}>
-            {/* <Fonts /> */}
+            <Fonts />
             <Component {...pageProps} />
         </ChakraProvider>
     );
