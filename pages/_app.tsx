@@ -28,8 +28,8 @@ const theme = extendTheme({
         }
     },
     fonts: {
-        heading: 'Open Sans',
-        body: 'Roboto'
+        heading: 'Montserrat',
+        body: 'Hind Siliguri'
     }
 });
 

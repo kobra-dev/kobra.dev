@@ -22,33 +22,32 @@ export default function Footer(props: FooterProps) {
     return (
         <SimpleGrid
             w="100%"
-            maxW="700px"
-            minChildWidth="250px"
+            // maxW="900px"
+            // minChildWidth="250px"
             spacing={16}
             px="50px"
             pb={16}
+            columns={[2, null, 3]}
         >
-            <Stack spacing={2}>
-                <Flex align="center">
-                    <Image src={props.iconUrl} maxW="2em" mr={4} />
-                    <Text fontSize="md" color="gray.500">
-                        &copy; {YEAR} {props.organizationName}.
-                    </Text>
-                </Flex>
-                <Stack direction="row" spacing="12px">
-                    {props.icons.map((icon, index) => (
-                        <Link key={index} as={NextLink} href={icon.url}>
-                            <FontAwesomeIcon
-                                cursor="pointer"
-                                filter="invert(0.5)"
-                                w="2em"
-                                h="2em"
-                                collection={icon.faCollection}
-                                name={icon.faName}
-                            />
-                        </Link>
-                    ))}
-                </Stack>
+            <Flex align="center">
+                <Image src={props.iconUrl} maxW="2em" mr={4} />
+                <Text fontSize="md" color="gray.500">
+                    &copy; {YEAR} {props.organizationName}.
+                </Text>
+            </Flex>
+            <Stack direction="row" spacing="12px">
+                {props.icons.map((icon, index) => (
+                    <Link key={index} as={NextLink} href={icon.url}>
+                        <FontAwesomeIcon
+                            cursor="pointer"
+                            filter="invert(0.5)"
+                            w="2em"
+                            h="2em"
+                            collection={icon.faCollection}
+                            name={icon.faName}
+                        />
+                    </Link>
+                ))}
             </Stack>
             <Stack>
                 {props.links.map((link, index) => (
