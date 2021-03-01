@@ -22,12 +22,13 @@ export default function Footer(props: FooterProps) {
     return (
         <SimpleGrid
             w="100%"
-            maxW="900px"
+            maxW="80%"
             minChildWidth="250px"
             spacing={16}
             px="50px"
             pb={16}
-            columns={[2, null, 3]}
+            justifyItems="center"
+            columns={3}
         >
             <Flex align="center">
                 <Image src={props.iconUrl} maxW="2em" mr={4} />
@@ -35,6 +36,15 @@ export default function Footer(props: FooterProps) {
                     &copy; {YEAR} {props.organizationName}.
                 </Text>
             </Flex>
+
+            <Stack>
+                {props.links.map((link, index) => (
+                    <Link key={index} as={NextLink} href={link.url}>
+                        <a>{link.text}</a>
+                    </Link>
+                ))}
+            </Stack>
+
             <Stack direction="row" spacing="12px">
                 {props.icons.map((icon, index) => (
                     <Link key={index} as={NextLink} href={icon.url}>
@@ -46,13 +56,6 @@ export default function Footer(props: FooterProps) {
                             collection={icon.faCollection}
                             name={icon.faName}
                         />
-                    </Link>
-                ))}
-            </Stack>
-            <Stack>
-                {props.links.map((link, index) => (
-                    <Link key={index} as={NextLink} href={link.url}>
-                        <a>{link.text}</a>
                     </Link>
                 ))}
             </Stack>
