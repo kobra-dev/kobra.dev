@@ -1,15 +1,21 @@
-import { Button, Link } from "@chakra-ui/react";
-import { TextUrlPairDataFragment } from "../src/generated/queries";
+import { Button, Link } from '@chakra-ui/react';
+import { TextUrlPairDataFragment } from '../src/generated/queries';
 
 interface CtaButtonProps extends TextUrlPairDataFragment {
-    [otherProp: string]: any
+    [otherProp: string]: any;
 }
 
 export default function CtaButton(props: CtaButtonProps) {
     const { text, url, ...otherProps } = props;
     return (
         <Link href={url.value}>
-            <Button color="white" bg="brand.500" size="lg" {...otherProps}>
+            <Button
+                color="white"
+                bg="brand.500"
+                style={{ textDecoration: 'none' }}
+                size="lg"
+                {...otherProps}
+            >
                 {text}
             </Button>
         </Link>
