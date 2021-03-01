@@ -21,6 +21,8 @@ interface FooterProps {
 export default function Footer(props: FooterProps) {
     return (
         <SimpleGrid
+            fontFamily="Montserrat"
+            fontWeight="bold"
             w="100%"
             maxW="80%"
             minChildWidth="250px"
