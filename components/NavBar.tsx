@@ -47,6 +47,7 @@ export default function NavBar(props: NavbarDataFragment) {
                             <Link
                                 key={index}
                                 href={button.texturlPair.url.value}
+                                style={{ textDecoration: 'none' }}
                             >
                                 <NavbarButton
                                     isBrand={button.isBrandColorBackground}
