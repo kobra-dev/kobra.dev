@@ -1,5 +1,4 @@
 import { Box, Flex, Link, Stack, Text } from '@chakra-ui/react';
-import { url } from 'inspector';
 import MemoImageBrowserHttpsIcon from './image-browser-https-icon';
 
 interface FakeBrowserProps {

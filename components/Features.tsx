@@ -1,15 +1,24 @@
-import { Box, Divider, Flex, Heading, Stack, Text, Wrap, WrapItem } from "@chakra-ui/react";
+import {
+    Box,
+    Divider,
+    Flex,
+    Heading,
+    Stack,
+    Text,
+    Wrap,
+    WrapItem
+} from '@chakra-ui/react';
 
 interface Feature {
-    icon?: React.ReactNode | string,
-    heading: string,
-    description?: string
+    icon?: React.ReactNode | string;
+    heading: string;
+    description?: string;
 }
 
 interface FeaturesProps {
-    heading?: string,
-    description?: string,
-    features?: Feature[]
+    heading?: string;
+    description?: string;
+    features?: Feature[];
 }
 
 // A block showing different features:
@@ -25,7 +34,9 @@ export default function Features(props: FeaturesProps) {
     return (
         <Stack spacing={4} px="50px" align="center">
             {props.heading && (
-                <Heading as="h2" size="xl">{props.heading}</Heading>
+                <Heading as="h2" size="xl">
+                    {props.heading}
+                </Heading>
             )}
             {props.description && (
                 <Text fontSize="md">{props.description}</Text>
@@ -33,13 +44,22 @@ export default function Features(props: FeaturesProps) {
             {props.features && (
                 <>
                     <Wrap spacing={4} justify="center">
-                        {props.features.map(feature => (
-                            <WrapItem key={feature.heading + feature.description} borderWidth="1px" p={4} w="400px">
+                        {props.features.map((feature) => (
+                            <WrapItem
+                                key={feature.heading + feature.description}
+                                borderWidth="1px"
+                                p={4}
+                                w="400px"
+                            >
                                 <Box>
                                     {feature.icon}
-                                    <Heading as="h3" size="lg">{feature.heading}</Heading>
+                                    <Heading as="h3" size="lg">
+                                        {feature.heading}
+                                    </Heading>
                                     {feature.description && (
-                                        <Text fontSize="md">{feature.description}</Text>
+                                        <Text fontSize="md">
+                                            {feature.description}
+                                        </Text>
                                     )}
                                 </Box>
                             </WrapItem>
@@ -48,5 +68,5 @@ export default function Features(props: FeaturesProps) {
                 </>
             )}
         </Stack>
-    )
+    );
 }
