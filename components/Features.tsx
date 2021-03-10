@@ -33,7 +33,12 @@ interface FeaturesProps {
 
 export default function Features(props: FeaturesProps) {
     return (
-        <Stack spacing={4} px="50px" align="center">
+        <Stack
+            spacing={4}
+            px="50px"
+            align="center"
+            style={{ marginBottom: '4rem' }}
+        >
             {props.heading && (
                 <Heading as="h2" size="xl">
                     {props.heading}

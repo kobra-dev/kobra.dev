@@ -29,7 +29,7 @@ const theme = extendTheme({
     },
     fonts: {
         heading: 'Montserrat',
-        body: 'Open Sans'
+        body: 'Noto Sans'
     }
 });
 
