@@ -17,10 +17,23 @@ export default function Reviews(props: ReviewsDataFragment) {
             </Heading>
             <Wrap spacing={4} justify="center">
                 {props.reviewsCollection.items.map((review, index) => (
-                    <WrapItem key={index} borderWidth="1px" p={4} w="400px">
+                    <WrapItem
+                        key={index}
+                        borderWidth="1px"
+                        rounded={5}
+                        p={4}
+                        w="400px"
+                    >
                         <Box>
-                            <Text>{review.reviewText}</Text>
-                            <Text as="b" fontSize="lg">
+                            <Text style={{ textAlign: 'left' }} pb={5}>
+                                {review.reviewText}
+                            </Text>
+                            <Text
+                                style={{
+                                    textAlign: 'right',
+                                    fontWeight: 'bold'
+                                }}
+                            >
                                 - {review.person}
                             </Text>
                         </Box>
