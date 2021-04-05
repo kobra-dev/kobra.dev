@@ -25,15 +25,10 @@ export default function Reviews(props: ReviewsDataFragment) {
                         w="400px"
                     >
                         <Box>
-                            <Text style={{ textAlign: 'left' }} pb={5}>
+                            <Text pb={5} align="left">
                                 {review.reviewText}
                             </Text>
-                            <Text
-                                style={{
-                                    textAlign: 'right',
-                                    fontWeight: 'bold'
-                                }}
-                            >
+                            <Text align="right" fontWeight="bold">
                                 - {review.person}
                             </Text>
                         </Box>

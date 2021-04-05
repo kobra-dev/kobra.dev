@@ -8,12 +8,12 @@ interface CtaButtonProps extends TextUrlPairDataFragment {
 export default function CtaButton(props: CtaButtonProps) {
     const { text, url, ...otherProps } = props;
     return (
-        <Link href={url.value} style={{ textDecoration: 'none' }}>
+        <Link href={url.value} textDecoration="none">
             <Button
                 color="white"
                 colorScheme="teal"
                 bg="brand.500"
-                style={{ textDecoration: 'none' }}
+                textDecoration="none"
                 size="lg"
                 {...otherProps}
             >

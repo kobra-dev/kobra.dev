@@ -33,12 +33,7 @@ interface FeaturesProps {
 
 export default function Features(props: FeaturesProps) {
     return (
-        <Stack
-            spacing={4}
-            px="50px"
-            align="center"
-            style={{ marginBottom: '4rem' }}
-        >
+        <Stack spacing={4} px="50px" align="center">
             {props.heading && (
                 <Heading as="h2" size="xl">
                     {props.heading}
@@ -57,23 +52,19 @@ export default function Features(props: FeaturesProps) {
                                 p={8}
                                 w="400px"
                             >
-                                <Box
-                                    style={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        alignItems: 'center',
-                                        gap: '2rem'
-                                    }}
+                                <Stack
+                                    direction="column"
+                                    spacing={8}
+                                    alignItems="center"
                                 >
                                     <Center
-                                        style={{
-                                            backgroundColor: '#effff4',
-                                            width: '4rem',
-                                            padding: '20px 10px',
-                                            borderRadius: '50%'
-                                        }}
+                                        bgColor="#effff4"
+                                        w="4rem"
+                                        p="20px 10px"
+                                        borderRadius="50%"
                                     >
                                         {/* {feature.icon} */}
+                                        {/* TODO: use icon */}
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 24 24"
@@ -96,7 +87,7 @@ export default function Features(props: FeaturesProps) {
                                             {feature.description}
                                         </Text>
                                     )}
-                                </Box>
+                                </Stack>
                             </WrapItem>
                         ))}
                     </Wrap>
