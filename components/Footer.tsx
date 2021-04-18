@@ -30,6 +30,7 @@ export default function Footer(props: FooterProps) {
             px="50px"
             pb={16}
             justifyItems="center"
+            alignItems="flex-start"
             columns={3}
         >
             <Flex align="center">
@@ -53,6 +54,10 @@ export default function Footer(props: FooterProps) {
                         <FontAwesomeIcon
                             cursor="pointer"
                             filter="invert(0.5)"
+                            _hover={{
+                                filter: "invert(0.7)"
+                            }}
+                            transition="filter 0.2s ease"
                             w="2em"
                             h="2em"
                             collection={icon.faCollection}

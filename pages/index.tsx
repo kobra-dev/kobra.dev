@@ -17,7 +17,8 @@ import {
     MastheadDataFragment,
     FooterDataFragment,
     ReviewsDataFragment,
-    NavbarDataFragment
+    NavbarDataFragment,
+    TwoBlocksDataFragment
 } from '../src/generated/queries';
 import Features from '../components/Features';
 import { Divider, Stack } from '@chakra-ui/react';
@@ -26,9 +27,10 @@ import { Fragment } from 'react';
 import IconOrImage from '../components/IconOrImage';
 import Footer from '../components/Footer';
 import { FACollection } from '../components/FontAwesomeIcon';
+import TwoBlocks from '../components/TwoBlocks';
 
 const SECTION_BACKGROUNDS = {
-    white: ['Content', 'Features', 'Footer', 'Reviews'],
+    white: ['Content', 'Features', 'Footer', 'Reviews', 'TwoBlocks'],
     brand: ['Masthead', 'Demo']
 };
 
@@ -145,6 +147,8 @@ export default function Home(props: IndexProps) {
                                 />
                             ) : section.__typename === 'Reviews' ? (
                                 <Reviews {...section} />
+                            ) : section.__typename === 'TwoBlocks' ? (
+                                <TwoBlocks {...section} />
                             ) : undefined}
                         </Fragment>
                     ))}
@@ -167,6 +171,7 @@ interface IndexProps {
         | ({ __typename?: 'Masthead' } & MastheadDataFragment)
         | ({ __typename?: 'Footer' } & FooterDataFragment)
         | ({ __typename?: 'Reviews' } & ReviewsDataFragment)
+        | ({ __typename?: 'TwoBlocks' } & TwoBlocksDataFragment)
     >;
 }
 

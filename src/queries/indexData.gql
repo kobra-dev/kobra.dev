@@ -36,6 +36,9 @@ query IndexData {
           ... on Reviews {
             ...ReviewsData
           }
+          ... on TwoBlocks {
+            ...TwoBlocksData
+          }
         }
       }
     }
@@ -163,5 +166,22 @@ fragment NavbarData on Navbar {
         ...TextUrlPairData
       }
     }
+  }
+}
+
+fragment TwoBlocksData on TwoBlocks {
+  leftTitle
+  leftImage {
+    url
+  }
+  leftButton {
+    ...TextUrlPairData
+  }
+  rightTitle
+  rightImage {
+    url
+  }
+  rightButton {
+    ...TextUrlPairData
   }
 }
