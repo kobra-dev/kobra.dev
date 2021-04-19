@@ -5,6 +5,7 @@ import {
     TextUrlPairDataFragment,
     TwoBlocksDataFragment
 } from '../src/generated/queries';
+import { getSrcSetForContentfulUrl } from '../src/utils';
 import CtaButton from './CtaButton';
 
 function Block(props: {
@@ -32,6 +33,7 @@ function Block(props: {
             <Box flex={1} display="flex">
                 <Image
                     src={props.url ?? ''}
+                    srcSet={getSrcSetForContentfulUrl(props.url ?? '')}
                     shadow="xl"
                     rounded="0.5rem"
                     objectFit="cover"

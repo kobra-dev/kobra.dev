@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
 import { TextUrlPairDataFragment } from '../src/generated/queries';
+import { getSrcSetForContentfulUrl } from '../src/utils';
 import CtaButton from './CtaButton';
 
 interface MastheadProps {
@@ -31,6 +32,7 @@ export default function Masthead(props: MastheadProps) {
             >
                 <Image
                     src={props.imageSrc}
+                    srcSet={getSrcSetForContentfulUrl(props.imageSrc)}
                     size="100%"
                     rounded="1rem"
                     shadow="2xl"
