@@ -2921,7 +2921,7 @@ export const MastheadDataFragmentDoc = gql`
     value
   }
   image {
-    url(transform: {format: WEBP})
+    url(transform: {format: WEBP, width: 1900})
   }
   mastheadCtaButton: callToActionButton {
     ...TextUrlPairData

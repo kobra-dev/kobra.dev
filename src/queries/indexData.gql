@@ -112,7 +112,8 @@ fragment MastheadData on Masthead {
   }
   image {
     url(transform: {
-      format: WEBP
+      format: WEBP,
+      width: 1900
     })
   }
   mastheadCtaButton: callToActionButton {
