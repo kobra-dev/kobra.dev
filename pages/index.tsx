@@ -113,15 +113,20 @@ export default function Home(props: IndexProps) {
                                     )}
                                 />
                             ) : section.__typename === 'Masthead' ? (
-                                <Masthead
-                                    heading={section.heading}
-                                    subheading={section.subheading.value}
-                                    imageSrc={section.image.url ?? ''}
-                                    callToActionButton={
-                                        section.mastheadCtaButton
-                                    }
-                                    subtext={section.subtext}
-                                />
+                                <>
+                                    <Head>
+                                        <link rel="preload" href={section.image.url ?? ''} as="image" type="image/webp"/>
+                                    </Head>
+                                    <Masthead
+                                        heading={section.heading}
+                                        subheading={section.subheading.value}
+                                        imageSrc={section.image.url ?? ''}
+                                        callToActionButton={
+                                            section.mastheadCtaButton
+                                        }
+                                        subtext={section.subtext}
+                                    />
+                                </>
                             ) : section.__typename === 'Footer' ? (
                                 <Footer
                                     organizationName={

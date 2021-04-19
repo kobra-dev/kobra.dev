@@ -2864,7 +2864,7 @@ export const KeyValuePairDataFragmentDoc = gql`
 export const IconOrImageDataFragmentDoc = gql`
     fragment IconOrImageData on IconOrImage {
   image {
-    url
+    url(transform: {format: WEBP, width: 1200})
   }
   faIconName
 }
@@ -2921,7 +2921,7 @@ export const MastheadDataFragmentDoc = gql`
     value
   }
   image {
-    url
+    url(transform: {format: WEBP})
   }
   mastheadCtaButton: callToActionButton {
     ...TextUrlPairData
@@ -2990,14 +2990,14 @@ export const TwoBlocksDataFragmentDoc = gql`
     fragment TwoBlocksData on TwoBlocks {
   leftTitle
   leftImage {
-    url
+    url(transform: {format: WEBP, width: 1000})
   }
   leftButton {
     ...TextUrlPairData
   }
   rightTitle
   rightImage {
-    url
+    url(transform: {format: WEBP, width: 1000})
   }
   rightButton {
     ...TextUrlPairData
