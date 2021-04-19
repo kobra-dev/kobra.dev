@@ -29,13 +29,12 @@ function Block(props: {
             >
                 {props.title}
             </Heading>
-            <Box flex={1}>
+            <Box flex={1} display="flex">
                 <Image
                     src={props.url ?? ''}
                     shadow="xl"
                     rounded="0.5rem"
                     objectFit="cover"
-                    h="100%"
                 />
             </Box>
             <CtaButton
