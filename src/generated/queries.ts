@@ -64,6 +64,7 @@ export type Query = {
   featureCollection?: Maybe<FeatureCollection>;
   keyValuePair?: Maybe<KeyValuePair>;
   keyValuePairCollection?: Maybe<KeyValuePairCollection>;
+  entryCollection?: Maybe<EntryCollection>;
 };
 
 
@@ -370,6 +371,16 @@ export type QueryKeyValuePairCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<KeyValuePairFilter>;
   order?: Maybe<Array<Maybe<KeyValuePairOrder>>>;
+};
+
+
+export type QueryEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<EntryFilter>;
+  order?: Maybe<Array<Maybe<EntryOrder>>>;
 };
 
 /** Represents a binary file in a space. An asset can be any file type. */
@@ -1844,6 +1855,7 @@ export type IconOrImageCollection = {
 
 export type AssetFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   title_exists?: Maybe<Scalars['Boolean']>;
   title?: Maybe<Scalars['String']>;
   title_not?: Maybe<Scalars['String']>;
@@ -1947,6 +1959,17 @@ export type SysFilter = {
   publishedVersion_lte?: Maybe<Scalars['Float']>;
 };
 
+export type ContentfulMetadataFilter = {
+  tags_exists?: Maybe<Scalars['Boolean']>;
+  tags?: Maybe<ContentfulMetadataTagsFilter>;
+};
+
+export type ContentfulMetadataTagsFilter = {
+  id_contains_all?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains_some?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains_none?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
 export enum AssetOrder {
   UrlAsc = 'url_ASC',
   UrlDesc = 'url_DESC',
@@ -1981,6 +2004,7 @@ export type AssetCollection = {
 export type PageFilter = {
   navbar?: Maybe<CfNavbarNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   id_not?: Maybe<Scalars['String']>;
@@ -1996,6 +2020,7 @@ export type PageFilter = {
 
 export type CfNavbarNestedFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   logo_exists?: Maybe<Scalars['Boolean']>;
   buttonsCollection_exists?: Maybe<Scalars['Boolean']>;
   OR?: Maybe<Array<Maybe<CfNavbarNestedFilter>>>;
@@ -2019,6 +2044,7 @@ export type TwoBlocksFilter = {
   leftButton?: Maybe<CfFooterLinkNestedFilter>;
   rightButton?: Maybe<CfFooterLinkNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   leftTitle_exists?: Maybe<Scalars['Boolean']>;
   leftTitle?: Maybe<Scalars['String']>;
   leftTitle_not?: Maybe<Scalars['String']>;
@@ -2043,6 +2069,7 @@ export type TwoBlocksFilter = {
 
 export type CfFooterLinkNestedFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   text_exists?: Maybe<Scalars['Boolean']>;
   text?: Maybe<Scalars['String']>;
   text_not?: Maybe<Scalars['String']>;
@@ -2072,6 +2099,7 @@ export enum TwoBlocksOrder {
 
 export type NavbarFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   logo_exists?: Maybe<Scalars['Boolean']>;
   buttonsCollection_exists?: Maybe<Scalars['Boolean']>;
   OR?: Maybe<Array<Maybe<NavbarFilter>>>;
@@ -2092,6 +2120,7 @@ export enum NavbarOrder {
 export type NavbarButtonFilter = {
   texturlPair?: Maybe<CfFooterLinkNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   isBrandColorBackground_exists?: Maybe<Scalars['Boolean']>;
   isBrandColorBackground?: Maybe<Scalars['Boolean']>;
   isBrandColorBackground_not?: Maybe<Scalars['Boolean']>;
@@ -2115,6 +2144,7 @@ export enum NavbarButtonOrder {
 
 export type ReviewsFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   heading_exists?: Maybe<Scalars['Boolean']>;
   heading?: Maybe<Scalars['String']>;
   heading_not?: Maybe<Scalars['String']>;
@@ -2142,6 +2172,7 @@ export enum ReviewsOrder {
 
 export type ReviewFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   reviewText_exists?: Maybe<Scalars['Boolean']>;
   reviewText?: Maybe<Scalars['String']>;
   reviewText_not?: Maybe<Scalars['String']>;
@@ -2185,6 +2216,7 @@ export type MastheadFilter = {
   subheading?: Maybe<CfKeyValuePairNestedFilter>;
   callToActionButton?: Maybe<CfFooterLinkNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   heading_exists?: Maybe<Scalars['Boolean']>;
   heading?: Maybe<Scalars['String']>;
   heading_not?: Maybe<Scalars['String']>;
@@ -2208,6 +2240,7 @@ export type MastheadFilter = {
 
 export type CfKeyValuePairNestedFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   key_exists?: Maybe<Scalars['Boolean']>;
   key?: Maybe<Scalars['String']>;
   key_not?: Maybe<Scalars['String']>;
@@ -2245,6 +2278,7 @@ export type ContentFilter = {
   media?: Maybe<CfIconOrImageNestedFilter>;
   callToActionButton?: Maybe<CfFooterLinkNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   heading_exists?: Maybe<Scalars['Boolean']>;
   heading?: Maybe<Scalars['String']>;
   heading_not?: Maybe<Scalars['String']>;
@@ -2270,6 +2304,7 @@ export type ContentFilter = {
 
 export type CfIconOrImageNestedFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   id_not?: Maybe<Scalars['String']>;
@@ -2307,6 +2342,7 @@ export enum ContentOrder {
 export type FooterLinkFilter = {
   url?: Maybe<CfKeyValuePairNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   text_exists?: Maybe<Scalars['Boolean']>;
   text?: Maybe<Scalars['String']>;
   text_not?: Maybe<Scalars['String']>;
@@ -2335,6 +2371,7 @@ export enum FooterLinkOrder {
 export type FooterFilter = {
   organizationName?: Maybe<CfKeyValuePairNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   id_not?: Maybe<Scalars['String']>;
@@ -2367,6 +2404,7 @@ export type AccountFilter = {
   url?: Maybe<CfKeyValuePairNestedFilter>;
   icon?: Maybe<CfFontAwesomeIconNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   name_exists?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   name_not?: Maybe<Scalars['String']>;
@@ -2382,6 +2420,7 @@ export type AccountFilter = {
 
 export type CfFontAwesomeIconNestedFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   name_exists?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   name_not?: Maybe<Scalars['String']>;
@@ -2415,6 +2454,7 @@ export enum AccountOrder {
 
 export type FontAwesomeIconFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   name_exists?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   name_not?: Maybe<Scalars['String']>;
@@ -2458,6 +2498,7 @@ export type FontAwesomeIconCollection = {
 
 export type IconOrImageFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
   id?: Maybe<Scalars['String']>;
   id_not?: Maybe<Scalars['String']>;
@@ -2494,6 +2535,7 @@ export enum IconOrImageOrder {
 
 export type FeaturesFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   heading_exists?: Maybe<Scalars['Boolean']>;
   heading?: Maybe<Scalars['String']>;
   heading_not?: Maybe<Scalars['String']>;
@@ -2529,6 +2571,7 @@ export enum FeaturesOrder {
 export type DemoFilter = {
   url?: Maybe<CfKeyValuePairNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   heading_exists?: Maybe<Scalars['Boolean']>;
   heading?: Maybe<Scalars['String']>;
   heading_not?: Maybe<Scalars['String']>;
@@ -2557,6 +2600,7 @@ export enum DemoOrder {
 export type FeatureFilter = {
   media?: Maybe<CfIconOrImageNestedFilter>;
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   heading_exists?: Maybe<Scalars['Boolean']>;
   heading?: Maybe<Scalars['String']>;
   heading_not?: Maybe<Scalars['String']>;
@@ -2591,6 +2635,7 @@ export enum FeatureOrder {
 
 export type KeyValuePairFilter = {
   sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   key_exists?: Maybe<Scalars['Boolean']>;
   key?: Maybe<Scalars['String']>;
   key_not?: Maybe<Scalars['String']>;
@@ -2631,6 +2676,24 @@ export type KeyValuePairCollection = {
   limit: Scalars['Int'];
   items: Array<KeyValuePair>;
 };
+
+export type EntryFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  OR?: Maybe<Array<Maybe<EntryFilter>>>;
+  AND?: Maybe<Array<Maybe<EntryFilter>>>;
+};
+
+export enum EntryOrder {
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
 
 export type IndexDataQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -2847,6 +2910,35 @@ export type TwoBlocksDataFragment = (
     { __typename?: 'FooterLink' }
     & TextUrlPairDataFragment
   ) }
+);
+
+export type ReplitDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ReplitDataQuery = (
+  { __typename?: 'Query' }
+  & { keyValuePairCollection?: Maybe<(
+    { __typename?: 'KeyValuePairCollection' }
+    & { items: Array<(
+      { __typename?: 'KeyValuePair' }
+      & KeyValuePairDataFragment
+    )> }
+  )>, assetCollection?: Maybe<(
+    { __typename?: 'AssetCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'Asset' }
+      & IndexAssetDataFragment
+    )>> }
+  )>, pageCollection?: Maybe<(
+    { __typename?: 'PageCollection' }
+    & { items: Array<(
+      { __typename?: 'Page' }
+      & { navbar: (
+        { __typename?: 'Navbar' }
+        & NavbarDataFragment
+      ) }
+    )> }
+  )> }
 );
 
 export const IndexAssetDataFragmentDoc = gql`
@@ -3084,3 +3176,51 @@ export function useIndexDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<
 export type IndexDataQueryHookResult = ReturnType<typeof useIndexDataQuery>;
 export type IndexDataLazyQueryHookResult = ReturnType<typeof useIndexDataLazyQuery>;
 export type IndexDataQueryResult = Apollo.QueryResult<IndexDataQuery, IndexDataQueryVariables>;
+export const ReplitDataDocument = gql`
+    query ReplitData {
+  keyValuePairCollection(where: {key_in: ["Product name"]}) {
+    items {
+      ...KeyValuePairData
+    }
+  }
+  assetCollection(where: {title_in: ["Favicon", "Demo video"]}) {
+    items {
+      ...IndexAssetData
+    }
+  }
+  pageCollection(where: {id: "Index"}, limit: 1) {
+    items {
+      navbar {
+        ...NavbarData
+      }
+    }
+  }
+}
+    ${KeyValuePairDataFragmentDoc}
+${IndexAssetDataFragmentDoc}
+${NavbarDataFragmentDoc}`;
+
+/**
+ * __useReplitDataQuery__
+ *
+ * To run a query within a React component, call `useReplitDataQuery` and pass it any options that fit your needs.
+ * When your component renders, `useReplitDataQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useReplitDataQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useReplitDataQuery(baseOptions?: Apollo.QueryHookOptions<ReplitDataQuery, ReplitDataQueryVariables>) {
+        return Apollo.useQuery<ReplitDataQuery, ReplitDataQueryVariables>(ReplitDataDocument, baseOptions);
+      }
+export function useReplitDataLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ReplitDataQuery, ReplitDataQueryVariables>) {
+          return Apollo.useLazyQuery<ReplitDataQuery, ReplitDataQueryVariables>(ReplitDataDocument, baseOptions);
+        }
+export type ReplitDataQueryHookResult = ReturnType<typeof useReplitDataQuery>;
+export type ReplitDataLazyQueryHookResult = ReturnType<typeof useReplitDataLazyQuery>;
+export type ReplitDataQueryResult = Apollo.QueryResult<ReplitDataQuery, ReplitDataQueryVariables>;

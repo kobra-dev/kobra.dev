@@ -180,10 +180,10 @@ interface IndexProps {
     >;
 }
 
-const findValueForKey = (kvps: KeyValuePairDataFragment[], key: string) =>
+export const findValueForKey = (kvps: KeyValuePairDataFragment[], key: string) =>
     kvps.filter((kvp) => kvp.key === key)[0].value;
 
-const findUrlForAssetTitle = (
+export const findUrlForAssetTitle = (
     assets: Maybe<IndexAssetDataFragment>[],
     title: string
 ) => assets.filter((asset) => asset?.title === title)[0]?.url;
