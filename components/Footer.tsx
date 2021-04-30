@@ -16,6 +16,7 @@ interface FooterProps {
         text: string;
         url: string;
     }[];
+    badgeUrl?: string;
 }
 
 export default function Footer(props: FooterProps) {
@@ -33,12 +34,17 @@ export default function Footer(props: FooterProps) {
             alignItems="flex-start"
             columns={3}
         >
-            <Flex align="center">
-                <Image src={props.iconUrl} maxW="2em" mr={4} />
-                <Text fontSize="md" color="gray.500">
-                    &copy; {YEAR} {props.organizationName}.
-                </Text>
-            </Flex>
+            <Stack alignItems="center" spacing="1rem">
+                <Flex align="center">
+                    <Image src={props.iconUrl} maxW="2em" mr={4} />
+                    <Text fontSize="md" color="gray.500">
+                        &copy; {YEAR} {props.organizationName}.
+                    </Text>
+                </Flex>
+                {props.badgeUrl && (
+                    <Image src={props.badgeUrl} maxW="15em"/>
+                )}
+            </Stack> 
 
             <Stack>
                 {props.links.map((link, index) => (

@@ -145,6 +145,11 @@ fragment FooterData on Footer {
       ...TextUrlPairData
     }
   }
+  badge {
+    url(transform: {
+      format: WEBP
+    })
+  }
 }
 
 fragment ReviewData on Review {

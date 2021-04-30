@@ -149,6 +149,7 @@ export default function Home(props: IndexProps) {
                                             url: link.url.value
                                         })
                                     )}
+                                    badgeUrl={section.badge?.url ?? undefined}
                                 />
                             ) : section.__typename === 'Reviews' ? (
                                 <Reviews {...section} />
