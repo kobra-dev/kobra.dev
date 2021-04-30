@@ -625,6 +625,7 @@ export type Footer = Entry & {
   iconsCollection: FooterIconsCollection;
   linksCollection: FooterLinksCollection;
   badge?: Maybe<Asset>;
+  badgeUrl?: Maybe<KeyValuePair>;
 };
 
 
@@ -674,6 +675,13 @@ export type FooterLinksCollectionArgs = {
 
 /** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
 export type FooterBadgeArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A footer section [See type definition](https://app.contentful.com/spaces/toxox86i0ilk/content_types/footer) */
+export type FooterBadgeUrlArgs = {
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
@@ -2011,6 +2019,7 @@ export enum AssetOrder {
 
 export type FooterFilter = {
   organizationName?: Maybe<CfKeyValuePairNestedFilter>;
+  badgeUrl?: Maybe<CfKeyValuePairNestedFilter>;
   sys?: Maybe<SysFilter>;
   contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
   id_exists?: Maybe<Scalars['Boolean']>;
@@ -2025,6 +2034,7 @@ export type FooterFilter = {
   iconsCollection_exists?: Maybe<Scalars['Boolean']>;
   linksCollection_exists?: Maybe<Scalars['Boolean']>;
   badge_exists?: Maybe<Scalars['Boolean']>;
+  badgeUrl_exists?: Maybe<Scalars['Boolean']>;
   OR?: Maybe<Array<Maybe<FooterFilter>>>;
   AND?: Maybe<Array<Maybe<FooterFilter>>>;
 };
@@ -2868,6 +2878,9 @@ export type FooterDataFragment = (
   ), badge?: Maybe<(
     { __typename?: 'Asset' }
     & Pick<Asset, 'url'>
+  )>, badgeUrl?: Maybe<(
+    { __typename?: 'KeyValuePair' }
+    & Pick<KeyValuePair, 'value'>
   )> }
 );
 
@@ -3059,6 +3072,9 @@ export const FooterDataFragmentDoc = gql`
   }
   badge {
     url(transform: {format: WEBP})
+  }
+  badgeUrl {
+    value
   }
 }
     ${TextUrlPairDataFragmentDoc}`;

@@ -150,6 +150,9 @@ fragment FooterData on Footer {
       format: WEBP
     })
   }
+  badgeUrl {
+    value
+  }
 }
 
 fragment ReviewData on Review {

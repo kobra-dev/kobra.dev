@@ -4357,6 +4357,43 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "badgeUrl",
+            "description": null,
+            "args": [
+              {
+                "name": "preview",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "locale",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "KeyValuePair",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -13328,6 +13365,18 @@
             "deprecationReason": null
           },
           {
+            "name": "badgeUrl",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "cfKeyValuePairNestedFilter",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "sys",
             "description": null,
             "type": {
@@ -13493,6 +13542,18 @@
           },
           {
             "name": "badge_exists",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "badgeUrl_exists",
             "description": null,
             "type": {
               "kind": "SCALAR",

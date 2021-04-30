@@ -17,6 +17,7 @@ interface FooterProps {
         url: string;
     }[];
     badgeUrl?: string;
+    badgeLink?: string;
 }
 
 export default function Footer(props: FooterProps) {
@@ -42,7 +43,9 @@ export default function Footer(props: FooterProps) {
                     </Text>
                 </Flex>
                 {props.badgeUrl && (
-                    <Image src={props.badgeUrl} maxW="15em"/>
+                    <Link href={props.badgeLink}>
+                        <Image src={props.badgeUrl} maxW="15em"/>
+                    </Link>
                 )}
             </Stack> 
 
