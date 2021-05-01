@@ -1,14 +1,11 @@
 import {
-    Box,
     Center,
-    Divider,
-    Flex,
     Heading,
     Stack,
     Text,
     Wrap,
     WrapItem
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 
 interface Feature {
     icon?: React.ReactNode | string;

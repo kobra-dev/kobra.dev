@@ -1,33 +1,33 @@
-import Head from 'next/head';
-import NavBar from '../components/NavBar';
-import Demo from '../components/Demo';
-import Reviews from '../components/Reviews';
-import Masthead from '../components/Masthead';
-import { GetStaticProps } from 'next';
-import { initializeApollo } from '../src/apolloClient';
+import { Divider, Stack } from '@chakra-ui/react'
+import { GetStaticProps } from 'next'
+import Head from 'next/head'
+import { Fragment } from 'react'
+import Content from '../components/Content'
+import Demo from '../components/Demo'
+import Features from '../components/Features'
+import { FACollection } from '../components/FontAwesomeIcon'
+import Footer from '../components/Footer'
+import IconOrImage from '../components/IconOrImage'
+import Masthead from '../components/Masthead'
+import NavBar from '../components/NavBar'
+import Reviews from '../components/Reviews'
+import TwoBlocks from '../components/TwoBlocks'
+import { initializeApollo } from '../src/apolloClient'
 import {
-    IndexDataDocument,
-    IndexDataQuery,
-    KeyValuePairDataFragment,
-    Maybe,
-    IndexAssetDataFragment,
     ContentDataFragment,
     DemoDataFragment,
     FeaturesDataFragment,
-    MastheadDataFragment,
     FooterDataFragment,
-    ReviewsDataFragment,
+    IndexAssetDataFragment,
+    IndexDataDocument,
+    IndexDataQuery,
+    KeyValuePairDataFragment,
+    MastheadDataFragment,
+    Maybe,
     NavbarDataFragment,
+    ReviewsDataFragment,
     TwoBlocksDataFragment
-} from '../src/generated/queries';
-import Features from '../components/Features';
-import { Divider, Stack } from '@chakra-ui/react';
-import Content from '../components/Content';
-import { Fragment } from 'react';
-import IconOrImage from '../components/IconOrImage';
-import Footer from '../components/Footer';
-import { FACollection } from '../components/FontAwesomeIcon';
-import TwoBlocks from '../components/TwoBlocks';
+} from '../src/generated/queries'
 
 const SECTION_BACKGROUNDS = {
     white: ['Content', 'Features', 'Footer', 'Reviews', 'TwoBlocks'],
