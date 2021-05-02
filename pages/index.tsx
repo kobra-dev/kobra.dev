@@ -151,7 +151,8 @@ export default function Home(props: IndexProps) {
                                     )}
                                     badgeUrl={section.badge?.url ?? undefined}
                                     badgeLink={section.badgeUrl?.value ?? undefined}
-                                />
+                                    />
+
                             ) : section.__typename === 'Reviews' ? (
                                 <Reviews {...section} />
                             ) : section.__typename === 'TwoBlocks' ? (

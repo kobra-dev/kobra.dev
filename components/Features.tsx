@@ -38,7 +38,7 @@ export default function Features(props: FeaturesProps) {
             )}
             {props.description && (
                 <Text fontSize="md">{props.description}</Text>
-            )}
+                )}
             {props.features && (
                 <>
                     <Wrap spacing={4} justify="center">
