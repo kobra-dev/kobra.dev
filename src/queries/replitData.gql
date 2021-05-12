@@ -1,0 +1,21 @@
+query ReplitData {
+    keyValuePairCollection(where: {
+        key_in: ["Product name"]
+    }) {
+        items {
+            ...KeyValuePairData
+        }
+    }
+    assetCollection(where: { title_in: ["Favicon", "Demo video"]}) {
+        items {
+            ...IndexAssetData
+        }
+    }
+    pageCollection(where: { id: "Index" }, limit: 1) {
+        items {
+            navbar {
+                ...NavbarData
+            }
+        }
+    }
+}

@@ -1,11 +1,11 @@
+import { IconProps } from "@chakra-ui/icon";
 import { Icon } from "@chakra-ui/react";
 
 export type FACollection = "brands" | "regular" | "solid";
 
-interface FontAwesomeIconProps {
+interface FontAwesomeIconProps extends IconProps {
     collection?: FACollection,
-    name: string,
-    [otherProp: string]: any
+    name: string
 }
 
 export const getFaUrl = (name: string, collection?: string) => `https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@master/svgs/${collection ?? "solid"}/${name}.svg`;

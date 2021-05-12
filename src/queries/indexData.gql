@@ -6,13 +6,16 @@ query IndexData {
       ...KeyValuePairData
     }
   }
-  assetCollection(where: { title_in: ["Product logo", "Favicon"] }) {
+  assetCollection(where: { title_in: ["Favicon"] }) {
     items {
       ...IndexAssetData
     }
   }
   pageCollection(where: { id: "Index" }, limit: 1) {
     items {
+      navbar {
+        ...NavbarData
+      }
       contentsCollection {
         items {
           ... on Content {
@@ -29,6 +32,12 @@ query IndexData {
           }
           ... on Footer {
             ...FooterData
+          }
+          ... on Reviews {
+            ...ReviewsData
+          }
+          ... on TwoBlocks {
+            ...TwoBlocksData
           }
         }
       }
@@ -48,7 +57,10 @@ fragment KeyValuePairData on KeyValuePair {
 
 fragment IconOrImageData on IconOrImage {
   image {
-    url
+    url(transform: {
+      format: WEBP,
+      width: 1200
+    })
   }
   faIconName
 }
@@ -99,7 +111,10 @@ fragment MastheadData on Masthead {
     value
   }
   image {
-    url
+    url(transform: {
+      format: WEBP,
+      width: 1900
+    })
   }
   mastheadCtaButton: callToActionButton {
     ...TextUrlPairData
@@ -129,5 +144,64 @@ fragment FooterData on Footer {
     items {
       ...TextUrlPairData
     }
+  }
+  badge {
+    url(transform: {
+      format: WEBP
+    })
+  }
+  badgeUrl {
+    value
+  }
+}
+
+fragment ReviewData on Review {
+  reviewText
+  person
+}
+
+fragment ReviewsData on Reviews {
+  heading
+  reviewsCollection {
+    items {
+      ...ReviewData
+    }
+  }
+}
+
+fragment NavbarData on Navbar {
+  logo {
+    url
+  }
+  buttonsCollection {
+    items {
+      isBrandColorBackground
+      texturlPair {
+        ...TextUrlPairData
+      }
+    }
+  }
+}
+
+fragment TwoBlocksData on TwoBlocks {
+  leftTitle
+  leftImage {
+    url(transform: {
+      format: WEBP,
+      width: 1000
+    })
+  }
+  leftButton {
+    ...TextUrlPairData
+  }
+  rightTitle
+  rightImage {
+    url(transform: {
+      format: WEBP,
+      width: 1000
+    })
+  }
+  rightButton {
+    ...TextUrlPairData
   }
 }
