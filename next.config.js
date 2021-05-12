@@ -8,7 +8,7 @@ module.exports = withBundleAnalyzer({
             {
                 source: '/replit',
                 destination: '/demo',
-                permanet: true
+                permanent: true
             }
         ];
     }
