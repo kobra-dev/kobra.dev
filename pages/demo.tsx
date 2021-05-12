@@ -28,7 +28,7 @@ export default function Demo(props: ReplitProps) {
             <main>
                 <NavBar {...props.navbar} />
                 <Stack spacing={8} align="center">
-                    <Heading>👋 Hello thanks for checking out Kobra!</Heading>
+                    <Heading>👋 Hello, thanks for checking out Kobra!</Heading>
                     <Text>Here's a quick demo video of Kobra Studio:</Text>
                     <video
                         controls
