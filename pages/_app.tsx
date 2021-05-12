@@ -1,6 +1,7 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { AppProps } from 'next/app'
 import { Fonts } from '../components/Fonts'
+import PlausibleProvider from 'next-plausible'
 import '../styles/globals.css'
 
 const theme = extendTheme({
@@ -26,10 +27,12 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ChakraProvider theme={theme}>
-            <Fonts />
-            <Component {...pageProps} />
-        </ChakraProvider>
+        <PlausibleProvider domain="kobra.dev">
+          <ChakraProvider theme={theme}>
+              <Fonts />
+              <Component {...pageProps} />
+          </ChakraProvider>
+        </PlausibleProvider>
     );
 }
 
