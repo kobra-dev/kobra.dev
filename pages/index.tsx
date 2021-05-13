@@ -1,18 +1,19 @@
-import { Divider, Stack } from '@chakra-ui/react'
-import { GetStaticProps } from 'next'
-import Head from 'next/head'
-import { Fragment } from 'react'
-import Content from '../components/Content'
-import Demo from '../components/Demo'
-import Features from '../components/Features'
-import { FACollection } from '../components/FontAwesomeIcon'
-import Footer from '../components/Footer'
-import IconOrImage from '../components/IconOrImage'
-import Masthead from '../components/Masthead'
-import NavBar from '../components/NavBar'
-import Reviews from '../components/Reviews'
-import TwoBlocks from '../components/TwoBlocks'
-import { initializeApollo } from '../src/apolloClient'
+import { Divider, Stack } from '@chakra-ui/react';
+import { GetStaticProps } from 'next';
+import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import { Fragment } from 'react';
+import Content from '../components/Content';
+import Demo from '../components/Demo';
+import Features from '../components/Features';
+import { FACollection } from '../components/FontAwesomeIcon';
+import Footer from '../components/Footer';
+import IconOrImage from '../components/IconOrImage';
+import Masthead from '../components/Masthead';
+import NavBar from '../components/NavBar';
+import Reviews from '../components/Reviews';
+import TwoBlocks from '../components/TwoBlocks';
+import { initializeApollo } from '../src/apolloClient';
 import {
     ContentDataFragment,
     DemoDataFragment,
@@ -27,7 +28,7 @@ import {
     NavbarDataFragment,
     ReviewsDataFragment,
     TwoBlocksDataFragment
-} from '../src/generated/queries'
+} from '../src/generated/queries';
 
 const SECTION_BACKGROUNDS = {
     white: ['Content', 'Features', 'Footer', 'Reviews', 'TwoBlocks'],
@@ -37,6 +38,23 @@ const SECTION_BACKGROUNDS = {
 export default function Home(props: IndexProps) {
     return (
         <Fragment>
+            <NextSeo
+                openGraph={{
+                    type: 'website',
+                    url: 'https://kobra.dev/',
+                    title: 'Kobra',
+                    description:
+                        'Kobra is A Visual Programming language for ML',
+                    images: [
+                        {
+                            url: 'https://images.ctfassets.net/toxox86i0ilk/2vq3YtIZopT8UPfaEvzp9g/7f668b13f10bcc162fdc3ab67364ab54/lightBold.svghttps://www.example.ie/og-image.jpg',
+                            width: 800,
+                            height: 600,
+                            alt: 'product logo'
+                        }
+                    ]
+                }}
+            />
             <Head>
                 <title>
                     {props.productName} | {props.tagline}
@@ -115,7 +133,12 @@ export default function Home(props: IndexProps) {
                             ) : section.__typename === 'Masthead' ? (
                                 <>
                                     <Head>
-                                        <link rel="preload" href={section.image.url ?? ''} as="image" type="image/webp"/>
+                                        <link
+                                            rel="preload"
+                                            href={section.image.url ?? ''}
+                                            as="image"
+                                            type="image/webp"
+                                        />
                                     </Head>
                                     <Masthead
                                         heading={section.heading}
@@ -150,9 +173,10 @@ export default function Home(props: IndexProps) {
                                         })
                                     )}
                                     badgeUrl={section.badge?.url ?? undefined}
-                                    badgeLink={section.badgeUrl?.value ?? undefined}
-                                    />
-
+                                    badgeLink={
+                                        section.badgeUrl?.value ?? undefined
+                                    }
+                                />
                             ) : section.__typename === 'Reviews' ? (
                                 <Reviews {...section} />
                             ) : section.__typename === 'TwoBlocks' ? (
@@ -183,8 +207,10 @@ interface IndexProps {
     >;
 }
 
-export const findValueForKey = (kvps: KeyValuePairDataFragment[], key: string) =>
-    kvps.filter((kvp) => kvp.key === key)[0].value;
+export const findValueForKey = (
+    kvps: KeyValuePairDataFragment[],
+    key: string
+) => kvps.filter((kvp) => kvp.key === key)[0].value;
 
 export const findUrlForAssetTitle = (
     assets: Maybe<IndexAssetDataFragment>[],

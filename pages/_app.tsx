@@ -1,7 +1,9 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import PlausibleProvider from 'next-plausible';
+import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
 import { Fonts } from '../components/Fonts';
+import SEO from '../next-seo.config';
 import '../styles/globals.css';
 
 const theme = extendTheme({
@@ -30,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <PlausibleProvider domain="kobra.dev">
             <ChakraProvider theme={theme}>
                 <Fonts />
+                <DefaultSeo {...SEO} />
                 <Component {...pageProps} />
             </ChakraProvider>
         </PlausibleProvider>
