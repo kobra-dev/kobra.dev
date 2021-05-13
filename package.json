@@ -37,6 +37,6 @@
     "cross-var": "^1.1.0",
     "dotenv-cli": "^4.0.0",
     "fix-contentful-schema": "^1.0.0",
-    "typescript": "^4.1.5"
+    "typescript": "^4.2.4"
   }
 }
