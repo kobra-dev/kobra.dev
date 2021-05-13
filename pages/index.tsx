@@ -39,6 +39,9 @@ export default function Home(props: IndexProps) {
     return (
         <Fragment>
             <NextSeo
+                title="kobra"
+                canonical="https://kobra.dev/"
+                description="Kobra is A Visual Programming language for ML"
                 openGraph={{
                     type: 'website',
                     url: 'https://kobra.dev/',
@@ -54,6 +57,11 @@ export default function Home(props: IndexProps) {
                         }
                     ],
                     site_name: 'kobra'
+                }}
+                twitter={{
+                    handle: '@kobra_dev',
+                    site: 'kobra.dev',
+                    cardType: 'summary_large_image'
                 }}
             />
             <Head>
