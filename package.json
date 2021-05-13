@@ -31,7 +31,7 @@
     "@graphql-codegen/typescript": "1.22.0",
     "@graphql-codegen/typescript-operations": "1.17.16",
     "@graphql-codegen/typescript-react-apollo": "2.2.4",
-    "@next/bundle-analyzer": "10.0.7",
+    "@next/bundle-analyzer": "10.2.0",
     "@types/node": "15.0.3",
     "cross-env": "7.0.3",
     "cross-var": "1.1.0",
