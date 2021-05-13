@@ -50,7 +50,7 @@ export default function Home(props: IndexProps) {
                         'Kobra is A Visual Programming language for ML',
                     images: [
                         {
-                            url: 'https://images.ctfassets.net/toxox86i0ilk/2vq3YtIZopT8UPfaEvzp9g/7f668b13f10bcc162fdc3ab67364ab54/lightBold.svghttps://www.example.ie/og-image.jpg',
+                            url: 'https://raw.githubusercontent.com/kobra-dev/branding/main/embed_image.png',
                             width: 800,
                             height: 600,
                             alt: 'product logo'
