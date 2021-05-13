@@ -52,7 +52,7 @@ export default function Home(props: IndexProps) {
                         {
                             url: 'https://raw.githubusercontent.com/kobra-dev/branding/main/embed_image.png',
                             width: 800,
-                            height: 600,
+                            height: 900,
                             alt: 'product logo'
                         }
                     ],
