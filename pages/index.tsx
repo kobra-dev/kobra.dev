@@ -52,7 +52,8 @@ export default function Home(props: IndexProps) {
                             height: 600,
                             alt: 'product logo'
                         }
-                    ]
+                    ],
+                    site_name: 'kobra'
                 }}
             />
             <Head>
