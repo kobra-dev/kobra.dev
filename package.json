@@ -13,7 +13,7 @@
     "analyze:browser": "cross-env BUNDLE_ANALYZE=browser next build"
   },
   "dependencies": {
-    "@apollo/client": "3.3.18",
+    "@apollo/client": "3.3.19",
     "@chakra-ui/icons": "1.0.13",
     "@chakra-ui/react": "1.6.2",
     "@emotion/react": "11.4.0",
