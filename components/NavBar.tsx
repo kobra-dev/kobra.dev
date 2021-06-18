@@ -23,7 +23,7 @@ export default function NavBar(props: NavbarDataFragment) {
                 position="relative"
             >
                 <Flex>
-                    <Link href="https://kobra.dev/" flex={1}>
+                    <Link href="https://kobra.dev/" flex={1} display="flex" alignItems="center">
                         <Image
                             h="36px"
                             src={props.logo.url ?? ''}
