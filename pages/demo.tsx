@@ -1,11 +1,15 @@
-import { Heading, Stack, Text } from "@chakra-ui/layout";
-import { GetStaticProps } from "next";
-import Head from "next/head";
-import { Fragment } from "react";
-import NavBar from "../components/NavBar";
-import { initializeApollo } from "../src/apolloClient";
-import { NavbarDataFragment, ReplitDataQuery, ReplitDataDocument } from "../src/generated/queries";
-import { findValueForKey, findUrlForAssetTitle } from "./index";
+import { Heading, Stack, Text } from '@chakra-ui/layout';
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import { Fragment } from 'react';
+import NavBar from '../components/NavBar';
+import { initializeApollo } from '../src/apolloClient';
+import {
+    NavbarDataFragment,
+    ReplitDataDocument,
+    ReplitDataQuery
+} from '../src/generated/queries';
+import { findUrlForAssetTitle, findValueForKey } from './index';
 
 interface ReplitProps {
     productName: string;
@@ -14,23 +18,27 @@ interface ReplitProps {
     navbar: NavbarDataFragment;
 }
 
-export default function Replit(props: ReplitProps) {
+export default function Demo(props: ReplitProps) {
     return (
         <Fragment>
             <Head>
-                <title>Replit | Kobra</title>
+                <title>Kobra</title>
                 <link rel="icon" href={props.faviconUrl} />
             </Head>
             <main>
                 <NavBar {...props.navbar} />
                 <Stack spacing={8} align="center">
-                    <Heading>👋 Hello Replit!</Heading>
+                    <Heading>👋 Hello, thanks for checking out Kobra!</Heading>
                     <Text>Here's a quick demo video of Kobra Studio:</Text>
-                    <video controls style={{maxHeight: "30rem"}} src={props.demoUrl}/>
+                    <video
+                        controls
+                        style={{ maxHeight: '30rem' }}
+                        src={props.demoUrl}
+                    />
                 </Stack>
             </main>
         </Fragment>
-    )
+    );
 }
 
 export const getStaticProps: GetStaticProps<ReplitProps> = async (context) => {
@@ -66,5 +74,5 @@ export const getStaticProps: GetStaticProps<ReplitProps> = async (context) => {
             navbar: page.navbar
         },
         revalidate: 10
-    }
-}
+    };
+};

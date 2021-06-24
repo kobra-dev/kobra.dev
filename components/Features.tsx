@@ -1,14 +1,11 @@
 import {
-    Box,
     Center,
-    Divider,
-    Flex,
     Heading,
     Stack,
     Text,
     Wrap,
     WrapItem
-} from '@chakra-ui/react';
+} from '@chakra-ui/react'
 
 interface Feature {
     icon?: React.ReactNode | string;
@@ -41,7 +38,7 @@ export default function Features(props: FeaturesProps) {
             )}
             {props.description && (
                 <Text fontSize="md">{props.description}</Text>
-            )}
+                )}
             {props.features && (
                 <>
                     <Wrap spacing={4} justify="center">

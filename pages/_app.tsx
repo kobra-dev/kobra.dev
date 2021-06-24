@@ -1,25 +1,19 @@
-import '../styles/globals.css';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import PlausibleProvider from 'next-plausible';
+import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
 import { Fonts } from '../components/Fonts';
-
-/*import { library } from '@fortawesome/fontawesome-svg-core'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-
-// TODO: find a way to only import the needed icons
-
-library.add(fas);*/
+import SEO from '../next-seo.config';
+import '../styles/globals.css';
 
 const theme = extendTheme({
     colors: {
-        // https://smart-swatch.netlify.app/#00d777
         brand: {
             50: '#dafff1',
             100: '#adffdb',
             200: '#7cffc5',
             300: '#4affae',
             400: '#1aff99',
-            //500: '#00e67f',
             500: '#00d777',
             600: '#00b362',
             700: '#008046',
@@ -35,10 +29,13 @@ const theme = extendTheme({
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <ChakraProvider theme={theme}>
-            <Fonts />
-            <Component {...pageProps} />
-        </ChakraProvider>
+        <PlausibleProvider domain="kobra.dev">
+            <ChakraProvider theme={theme}>
+                <Fonts />
+                <DefaultSeo {...SEO} />
+                <Component {...pageProps} />
+            </ChakraProvider>
+        </PlausibleProvider>
     );
 }
 

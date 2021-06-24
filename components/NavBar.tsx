@@ -1,13 +1,5 @@
-import {
-    Box,
-    Button,
-    Flex,
-    Image,
-    Link,
-    LinkOverlay,
-    Stack
-} from '@chakra-ui/react';
-import { NavbarDataFragment } from '../src/generated/queries';
+import { Box, Button, Flex, Image, Link, Stack } from '@chakra-ui/react'
+import { NavbarDataFragment } from '../src/generated/queries'
 
 const NavbarButton = (props: { isBrand: boolean; children: React.ReactNode }) =>
     props.isBrand ? (
@@ -31,13 +23,13 @@ export default function NavBar(props: NavbarDataFragment) {
                 position="relative"
             >
                 <Flex>
-                    <Box flex={1}>
+                    <Link href="https://kobra.dev/" flex={1} display="flex" alignItems="center">
                         <Image
                             h="36px"
                             src={props.logo.url ?? ''}
                             display={'inline-block'}
                         />
-                    </Box>
+                    </Link>
                     <Stack
                         ml={['1rem', '0rem', '0rem']}
                         spacing={['0.5rem', '1rem', '1rem']}
