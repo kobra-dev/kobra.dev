@@ -9,7 +9,7 @@ interface DemoProps {
 }
 
 export default function Demo(props: DemoProps) {
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(true);
 
     return (
         <Box pt={16} bg="brand.500" w="100%">
