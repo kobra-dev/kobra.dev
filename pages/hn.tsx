@@ -33,7 +33,7 @@ export default function Hn(props: HnProps) {
                 <NavBar {...props.navbar} />
                 <Stack spacing={8} align="center">
                     <Heading>
-                        :wave: Hey HN! Thanks for checking out Kobra :)
+                        👋  Hey HN! Thanks for checking out Kobra :)
                     </Heading>
                     <Text>
                         Here's a quick demo video of Kobra Studio, where we
