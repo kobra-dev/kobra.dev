@@ -55,7 +55,7 @@ function Block(props: {
 
 export default function TwoBlocks(props: TwoBlocksDataFragment) {
     return (
-        <Stack direction="row" spacing={8} px="50px" maxW="1300px" w="100%">
+        <Stack direction={{ base: "column", md: "row" }} spacing={8} px="50px" maxW="1300px" w="100%">
             <Block
                 title={props.leftTitle}
                 url={props.leftImage.url}
