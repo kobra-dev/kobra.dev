@@ -4,7 +4,7 @@ export default {
     canonical: 'https://kobra.dev/',
     openGraph: {
         type: 'website',
-        locale: 'en_IE',
+        locale: 'en_US',
         url: 'https://kobra.dev/',
         site_name: 'kobra'
     },
